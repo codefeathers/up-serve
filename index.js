@@ -1,10 +1,10 @@
 #!/usr/bin/env node --harmony
 
-var program = require('commander');
-var shell = require('shelljs');
-var fs = require('fs-extra');
-var chalk = require('chalk');
-var validator = require('validator');
+var program = require('commander')
+var shell = require('shelljs')
+var fs = require('fs-extra')
+var chalk = require('chalk')
+var validator = require('validator')
 var isFQDN = validator.isFQDN
 
 /* Use in prod
@@ -21,7 +21,7 @@ program
 	.command('static <domain> [relativePath]')
 	.description('Create a static server at this folder.')
 	.action(function(domain) {
-		if(!isFQDN(domain)) console.log('Domain is not valid. Please use a valid domain name.')
+		if(!isFQDN(domain)) console.log('\nDomain is not valid. Please use a valid domain name.')
 		// Stuff happens here
 	})
 
@@ -29,9 +29,28 @@ program
 	.command('proxy <domain> <port>')
 	.description('Create a proxy server, listening at port number.')
 	.action(function(domain, port) {
-		if(!isFQDN(domain)) console.log('Domain is not valid. Please use a valid domain name.')
-		if(typeof(port) != 'number') console.log('Port should be a number.')
+		if(!isFQDN(domain)) console.log('\nDomain is not valid. Please use a valid domain name.')
+		if(typeof(port) != 'number') console.log('\nPort should be a number.')
 		// Stuff happens here
+		//test stuff will be deleted later:
+		fs.outputFileSync("test",
+		"server {" + "\n" +
+		"	listen 80;" + "\n" +
+		"	listen [::]:80;" + "\n" +
+		"	root /var/www/" + domain + ";" + "\n" +
+		"	index index.html index.htm;" + "\n" +
+		""   + "\n" +
+		"	server_name " + domain + "\n" +
+		"	  location / {" + "\n" +
+		"		proxy_pass http://localhost:" + port + ";" + "\n" +
+		"		proxy_http_version 1.1;" + "\n" +
+		"		proxy_set_header Upgrade $http_upgrade;" + "\n" +
+		"		proxy_set_header Connection 'upgrade';" + "\n" +
+		"		proxy_set_header Host $host;" + "\n" +
+		"		proxy_cache_bypass $http_upgrade;" + "\n" +
+		"}"
+		)
+		//test stuff ends here
 	})
 	
 program
@@ -67,7 +86,3 @@ program.on('--help', function(){
 	});
 
 program.parse(process.argv);
-
-if (program.peppers) {
-	console.log('\nPlease add domain name.\nExample: up static domain.name')
-}
