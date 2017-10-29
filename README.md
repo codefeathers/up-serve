@@ -1,8 +1,15 @@
-<p align="center"><a href="http://moonjs.ga" target="_blank"><img width="100"src="assets/up.png"></a></p>
+<p align="center"><img height="100"src="assets/up.png"></p>
 
-<h1 align="center">`up` — quick server blocks</h1>
+<h1 align="center">`up`</h1>
+
+<p align="center">quick server blocks in one command</p>
+
+<br />
+<br />
 
 > ⚠️ ❌ `up` is not ready for use yet! Do not attempt to use this.
+
+<br />
 
 **`up`** is a command line application to create nginx server blocks quickly with a single command.
 
