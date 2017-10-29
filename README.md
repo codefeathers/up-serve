@@ -1,27 +1,41 @@
-<p align="center"><img height="100"src="assets/up.png"></p>
+<p alt="up—quick server blocks in one command" align="center"><img height="80"src="assets/up.png"></p>
 
-<h1 align="center">`up`</h1>
+---
+<p align="center">quick <em>nginx</em> server blocks in one command</p>
 
-<p align="center">quick server blocks in one command</p>
-
+<br />
 <br />
 <br />
 
-> ⚠️ ❌ `up` is not ready for use yet! Do not attempt to use this.
+> ⚠️ ❌ `up` is not ready for use yet! Do not attempt to use this!
 
 <br />
 
-**`up`** is a command line application to create nginx server blocks quickly with a single command.
+# up
 
-You will need to have nodeJS and nginx installed.
-
-https://nodejs.org
-
-https://nginx.org
+**`up`** is a command line application that creates nginx server blocks quickly with a single command.
 
 ---
 
-### Commands
+## Installation
+
+You will need to have [_node JS_](https://nodejs.org) and [_nginx_](https://nginx.org) installed.
+
+> ⚠️ ❌ `up` is not published on npm because it's still in development. If you intend to install it for development, follow these instructions:
+
+`git clone https://github.com/codefeathers/up-serve`
+
+`cd up-serve`
+
+`npm install`
+
+`npm install -g`
+
+> `up` is now available as a command.
+
+---
+
+## Commands
 
 `up static <domain>` - Create new static server at current folder.
 
@@ -33,7 +47,7 @@ https://nginx.org
 
 ---
 
-### Examples:
+## Examples:
 
 `up static example.com` will serve a static website from current folder.
 
