@@ -41,12 +41,13 @@ program
 	.action(function(domain, port) {
 		if(!isFQDN(domain))
 			console.log('\nDomain is not valid. Please use a valid domain name.')
-		else if(typeof port != 'number')
+		else if(typeof port !== 'number')
 			console.log('\nPort should be a number.')
 		// Stuff happens here
 		//test stuff will be deleted later:
 		else
 			createProxyServer(domain, port)
+			console.log('Done!')
 		//test stuff ends here
 	})
 	
