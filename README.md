@@ -1,10 +1,6 @@
 <p align="center"><a href="http://moonjs.ga" target="_blank"><img width="100"src="assets/up.png"></a></p>
 
----
-
-<h2 align="center">`up` — quick server blocks</h1>
-
----
+<h1 align="center">`up` — quick server blocks</h1>
 
 > ⚠️ ❌ `up` is not ready for use yet! Do not attempt to use this.
 
