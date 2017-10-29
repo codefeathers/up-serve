@@ -1,13 +1,34 @@
-# `up` — quick server blocks
+<p align="center"><a href="http://moonjs.ga" target="_blank"><img width="100"src="assets/up.png"></a></p>
 
-> ⚠️
-🚫
-`up` is not ready for use yet! It's in pre-release.
+---
 
-**`up`** is a command line application to create nginx server blocks quickly in a single command.
+<h2 align="center">`up` — quick server blocks</h1>
 
-You will need to have nginx installed.
+---
+
+> ⚠️ ❌ `up` is not ready for use yet! Do not attempt to use this.
+
+**`up`** is a command line application to create nginx server blocks quickly with a single command.
+
+You will need to have nodeJS and nginx installed.
+
+https://nodejs.org
+
 https://nginx.org
+
+---
+
+### Commands
+
+`up static <domain>` - Create new static server at current folder.
+
+`up proxy <domain> <port>` - Create new proxy server listening at said port.
+
+`up list` - List currently available servers.
+
+`up kill <domain>` - Kill the server for this domain.
+
+---
 
 ### Examples:
 

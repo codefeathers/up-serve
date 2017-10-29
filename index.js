@@ -35,11 +35,12 @@ program
 	.version('0.0.1')
 
 program
-	.command('static <domain> [relativePath] [outPort]')
+	.command('static <domain> [outPort]')
 	.description('Create a static server at this folder.')
-	.action(function(domain, relativePath="", outPort="") {
+	.action(function(domain, outPort="") {
 		if(!isDomain(domain)) console.log('\nDomain is not valid. Please use a valid domain name.')
 		// Stuff happens here
+		createStaticServer(domain, outPort)
 	})
 
 program
@@ -59,7 +60,7 @@ program
 			console.log('\nPort should be a number.')
 			return; }
 		else {
-			createProxyServer(domain, inPort)
+			createProxyServer(domain, inPort, outPort)
 			console.log('Done!')
 		}
 	})
@@ -88,7 +89,7 @@ program.on('--help', function(){
 	console.log('');
 	console.log('  Usage:');
 	console.log('');
-	console.log('   ', chalk.yellow('$ up'), chalk.cyan('static'), chalk.blue('domain-name'), chalk.grey('relative-path(optional)'));
+	console.log('   ', chalk.yellow('$ up'), chalk.cyan('static'), chalk.blue('domain-name'));
 	console.log('      Set up a static server at domain-name');
 	console.log('');
 	console.log('   ', chalk.yellow('$ up'), chalk.cyan('proxy'), chalk.blue('domain-name port-number'));

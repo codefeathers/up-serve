@@ -1,10 +1,10 @@
 var fs = require('fs-extra')
 
-function createStaticServer(domain, port) {
+function createStaticServer(domain, outPort = 80) {
     fs.outputFileSync("/test.txt",
         "server {" + "\n" +
-        "	listen 80;" + "\n" +
-        "	listen [::]:80;" + "\n" +
+        "	listen " + outPort + ";" + "\n" +
+        "	listen [::]:" + outPort + ";" + "\n" +
         "	root /var/www/" + domain + ";" + "\n" +
         "	index index.html index.htm;" + "\n" +
         ""   + "\n" +
@@ -15,4 +15,4 @@ function createStaticServer(domain, port) {
         )
 }
 
-module.exports = createProxyServer
+module.exports = createStaticServer
