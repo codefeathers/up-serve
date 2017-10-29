@@ -1,6 +1,5 @@
 <p alt="up—quick server blocks in one command" align="center"><img height="80"src="assets/up.png"></p>
 
----
 <p align="center">quick <em>nginx</em> server blocks in one command</p>
 
 <br />
@@ -14,8 +13,6 @@
 # up
 
 **`up`** is a command line application that creates nginx server blocks quickly with a single command.
-
----
 
 ## Installation
 
@@ -33,8 +30,6 @@ You will need to have [_node JS_](https://nodejs.org) and [_nginx_](https://ngin
 
 > `up` is now available as a command.
 
----
-
 ## Commands
 
 `up static <domain>` - Create new static server at current folder.
@@ -44,8 +39,6 @@ You will need to have [_node JS_](https://nodejs.org) and [_nginx_](https://ngin
 `up list` - List currently available servers.
 
 `up kill <domain>` - Kill the server for this domain.
-
----
 
 ## Examples:
 
