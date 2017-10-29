@@ -1,18 +1,16 @@
+<br /><br /><br /><br /><br />
+
 <p alt="up—quick server blocks in one command" align="center"><img height="80"src="assets/up.png"></p>
 
 <p align="center">quick <em>nginx</em> server blocks in one command</p>
 
-<br />
-<br />
-<br />
-
-> ⚠️ ❌ `up` is not ready for use yet! Do not attempt to use this!
-
-<br />
+<br /><br /><br /><br /><br />
 
 # up
 
 **`up`** is a command line application that creates nginx server blocks quickly with a single command.
+
+> ⚠️ ❌ `up` is not ready for use yet! Do not attempt to use this!
 
 ## Installation
 
