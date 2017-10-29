@@ -1,26 +1,32 @@
 #!/usr/bin/env node --harmony
 
+// Requiring npm modules
 var program = require('commander')
 var shell = require('shelljs')
 var fs = require('fs-extra')
 var chalk = require('chalk')
 var validator = require('validator')
+
+// Requiring Actions
 var createProxyServer = require('./actions/createProxyServer')
+
+// 
 var isFQDN = validator.isFQDN
 
-/* Use in prod
-var isWin = /^win/.test(process.platform)
+/*
+//Detect Linux or BSD
+var isLin = /^linux|^bsd/.test(process.platform)
 
-if(isWin == "Win32")
-
-if (!shell.which('node')) {
-	shell.echo('I need NodeJS to work. Install nginx first. https://nodejs.org/');
-	shell.exit(1);
+//Throw if OS is not Linux or BSD
+if(!isLin) {
+	shell.echo("\nThis is not a Linux or freeBSD distribution. I'm not written for this distro. Please raise an issue at " + chalk.cyan("https://github.com/codefeathers/up-serve") + " if you want `up` to be ported for your distro")
+	shell.exit(1)
 }
 
+//Throw if Nginx is not found
 if (!shell.which('nginx')) {
-	shell.echo('I need nginx to work. Install nginx first. https://nginx.org/');
-	shell.exit(1);
+	shell.echo('I need nginx to work. Install nginx first. https://nginx.org/')
+	shell.exit(1)
 }
 */
 
@@ -28,27 +34,32 @@ program
 	.version('0.0.1')
 
 program
-	.command('static <domain> [relativePath]')
+	.command('static <domain> [relativePath] [outPort]')
 	.description('Create a static server at this folder.')
-	.action(function(domain) {
+	.action(function(domain, relativePath="", outPort="") {
 		if(!isFQDN(domain)) console.log('\nDomain is not valid. Please use a valid domain name.')
 		// Stuff happens here
 	})
 
 program
-	.command('proxy <domain> <port>')
+	.command('proxy <domain> <inPort> [outPort]')
 	.description('Create a proxy server, listening at port number.')
-	.action(function(domain, port) {
-		if(!isFQDN(domain))
+	.action(function(domain, inPort, outPort = "") {
+		var validInPort = /^\d+$/.test(inPort)
+		var validOutPort = /^\d+$/.test(outPort)
+		if(!isFQDN(domain)) {
 			console.log('\nDomain is not valid. Please use a valid domain name.')
-		else if(typeof port !== 'number')
+			return; }
+		if(!validInPort || !validOutPort) {
+			if (!((validInPort > 0 && validInPort <= 65535) && (validOutPort > 0 && validOutPort <= 65535))) {
+				console.log('\nPort should be a number from 1 and 65535.')
+				return; }
 			console.log('\nPort should be a number.')
-		// Stuff happens here
-		//test stuff will be deleted later:
-		else
-			createProxyServer(domain, port)
+			return; }
+		else {
+			//createProxyServer(domain, inPort)
 			console.log('Done!')
-		//test stuff ends here
+		}
 	})
 	
 program
@@ -68,7 +79,7 @@ program
 program
 	.command('*')
 	.action(function() {
-		console.log('Invalid command. Type "up --help" for help.')
+		console.log("Invalid command. Type " + chalk.cyan('up --help') + " for help.")
 	})
 	
 program.on('--help', function(){

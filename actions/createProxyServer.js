@@ -1,16 +1,16 @@
 var fs = require('fs-extra')
 
-function createProxyServer(domain, port) {
+function createProxyServer(domain, inPort) {
     fs.outputFileSync("/test.txt",
         "server {" + "\n" +
-        "	listen 80;" + "\n" +
-        "	listen [::]:80;" + "\n" +
+        "	listen " + outPort + ";" + "\n" +
+        "	listen [::]:" + outPort + ";" + "\n" +
         "	root /var/www/" + domain + ";" + "\n" +
         "	index index.html index.htm;" + "\n" +
         ""   + "\n" +
         "	server_name " + domain + "\n" +
         "	  location / {" + "\n" +
-        "		proxy_pass http://localhost:" + port + ";" + "\n" +
+        "		proxy_pass http://localhost:" + inPort + ";" + "\n" +
         "		proxy_http_version 1.1;" + "\n" +
         "		proxy_set_header Upgrade $http_upgrade;" + "\n" +
         "		proxy_set_header Connection 'upgrade';" + "\n" +
