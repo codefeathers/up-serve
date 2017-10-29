@@ -10,10 +10,11 @@ var validator = require('validator')
 // Requiring Actions
 var createProxyServer = require('./actions/createProxyServer')
 
-// 
-var isFQDN = validator.isFQDN
+// Using Validator
+var isDomain = validator.isFQDN
 
-/*
+/* Uncomment in Production!
+
 //Detect Linux or BSD
 var isLin = /^linux|^bsd/.test(process.platform)
 
@@ -37,7 +38,7 @@ program
 	.command('static <domain> [relativePath] [outPort]')
 	.description('Create a static server at this folder.')
 	.action(function(domain, relativePath="", outPort="") {
-		if(!isFQDN(domain)) console.log('\nDomain is not valid. Please use a valid domain name.')
+		if(!isDomain(domain)) console.log('\nDomain is not valid. Please use a valid domain name.')
 		// Stuff happens here
 	})
 
@@ -47,17 +48,18 @@ program
 	.action(function(domain, inPort, outPort = "") {
 		var validInPort = /^\d+$/.test(inPort)
 		var validOutPort = /^\d+$/.test(outPort)
-		if(!isFQDN(domain)) {
+		if(!isDomain(domain)) {
 			console.log('\nDomain is not valid. Please use a valid domain name.')
 			return; }
 		if(!validInPort || !validOutPort) {
+			// This part doesn't work yet.
 			if (!((validInPort > 0 && validInPort <= 65535) && (validOutPort > 0 && validOutPort <= 65535))) {
 				console.log('\nPort should be a number from 1 and 65535.')
 				return; }
 			console.log('\nPort should be a number.')
 			return; }
 		else {
-			//createProxyServer(domain, inPort)
+			createProxyServer(domain, inPort)
 			console.log('Done!')
 		}
 	})
