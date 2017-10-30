@@ -1,6 +1,6 @@
 <br /><br /><br /><br /><br />
 
-<p alt="up—quick server blocks in one command" align="center"><img height="80"src="assets/up.png"></p>
+<p alt="up—quick server blocks in one command" align="center"><img height="80"src="assets/icon.png"></p>
 
 <p align="center">quick <em>nginx</em> server blocks in one command</p>
 
