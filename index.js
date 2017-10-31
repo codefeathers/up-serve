@@ -61,10 +61,7 @@ program
 			console.log(portInvalidMsg[1])
 			return }
 		else { */
-		if (!validate(domain, inPort, outPort)) {
-			console.log("I should get printed if I'm not validated")
-			return
-		}
+		if (!validate(domain, inPort, outPort))	return
 		createProxyServer(domain, inPort, outPort)
 		console.log("Done! Your server has been set up!\nPoint your domain to this server and check " + chalk.cyan(domain) + " to verify!")
 		//}
