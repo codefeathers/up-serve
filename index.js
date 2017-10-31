@@ -40,43 +40,43 @@ program
 program
 	.command('static <domain> [outPort]')
 	.description('Create a static server at this folder.')
-	.action(function(domain, outPort=80) {
-		if(!validate(domain, outPort)) return
-		console.log('Static server works')
+	.action(function (domain, outPort = 80) {
+		if (!validate(domain, outPort)) return
 		//createStaticServer(domain, outPort)
+		console.log("Done! Your static server has been set up!\nPoint your domain to this server and check " + chalk.cyan(domain) + " to verify!")
 	})
 
 program
 	.command('proxy <domain> <inPort> [outPort]')
 	.description('Create a proxy server, listening at port number.')
-	.action(function(domain, inPort, outPort = "80") {
-		if (!validate(domain, inPort, outPort))	return
+	.action(function (domain, inPort, outPort = "80") {
+		if (!validate(domain, inPort, outPort)) return
 		createProxyServer(domain, inPort, outPort)
-		console.log("Done! Your server has been set up!\nPoint your domain to this server and check " + chalk.cyan(domain) + " to verify!")
+		console.log("Done! Your reverse proxy server has been set up!\nPoint your domain to this server and check " + chalk.cyan(domain) + " to verify!")
 		//}
 	})
-	
+
 program
 	.command('list')
 	.description('List all available servers.')
-	.action(function() {
+	.action(function () {
 		// Stuff happens here
 	})
-	
+
 program
 	.command('kill <domain>')
 	.description('Kill a server.')
-	.action(function(domain) {
+	.action(function (domain) {
 		// Stuff happens here
 	})
 
 program
 	.command('*')
-	.action(function() {
+	.action(function () {
 		console.log("Invalid command. Type " + chalk.cyan('up --help') + " for help.")
 	})
-	
-program.on('--help', function(){
+
+program.on('--help', function () {
 	console.log('');
 	console.log('  Usage:');
 	console.log('');
@@ -86,6 +86,6 @@ program.on('--help', function(){
 	console.log('   ', chalk.yellow('$ up'), chalk.cyan('proxy'), chalk.blue('domain-name port-number'));
 	console.log('      Set up a proxy server listening at port-number');
 	console.log('');
-	});
+});
 
 program.parse(process.argv);

@@ -1,4 +1,6 @@
-var validator = require('validator')
+var validator = require('validator');
+var parseToInt = require('./parseToInt');
+
 // Using Validator
 var isDomain = validator.isFQDN
 
@@ -7,7 +9,12 @@ function validate(domain, inPort = undefined, outPort = "80") {
 	var portInvalidMsg = ["\nPort should be a number.", "\nPort should be a number from 1 and 65535."]
 	//var validInPort = /^\d+$/.exec(inPort)[0]
 	//var validOutPort = /^\d+$/.exec(outPort)[0]
+	//var regex = /^\d+$/.exec(outPort);
+	//var validInPort = regex ? regex[0] : null;
 	
+	var validInPort = parseToInt(inPort)
+	var validOutPort = parseToInt(outPort)
+
 	var isValid = true
 	if (!isDomain(domain)) {
 		console.log(domainInvalidMsg)
