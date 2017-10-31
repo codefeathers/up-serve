@@ -10,6 +10,7 @@ var validate = require('./util/validate')
 
 // Requiring Actions
 var createProxyServer = require('./actions/createProxyServer')
+var createStaticServer = require('./actions/createStaticServer')
 
 // Using Validator
 // var isDomain = validator.isFQDN
@@ -39,28 +40,16 @@ program
 program
 	.command('static <domain> [outPort]')
 	.description('Create a static server at this folder.')
-	.action(function(domain, outPort="80") {
-		if(!validate(domain, outPort))
-		createStaticServer(domain, outPort)
+	.action(function(domain, outPort=80) {
+		if(!validate(domain, outPort)) return
+		console.log('Static server works')
+		//createStaticServer(domain, outPort)
 	})
 
 program
 	.command('proxy <domain> <inPort> [outPort]')
 	.description('Create a proxy server, listening at port number.')
 	.action(function(domain, inPort, outPort = "80") {
-		/* Removing this to make it modular
-		var validInPort = /^\d+$/.test(inPort)
-		var validOutPort = /^\d+$/.test(outPort)
-		if(!isDomain(domain)) {
-			console.log(domainInvalidMsg)
-			return }
-		if(!validInPort || !validOutPort) {
-			console.log(portInvalidMsg[0])
-			return }
-		if(!((validInPort > 0 && validInPort <= 65535) && (validOutPort > 0 && validOutPort <= 65535))) {
-			console.log(portInvalidMsg[1])
-			return }
-		else { */
 		if (!validate(domain, inPort, outPort))	return
 		createProxyServer(domain, inPort, outPort)
 		console.log("Done! Your server has been set up!\nPoint your domain to this server and check " + chalk.cyan(domain) + " to verify!")
