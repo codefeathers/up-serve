@@ -5,13 +5,14 @@ var program = require('commander')
 var shell = require('shelljs')
 var fs = require('fs-extra')
 var chalk = require('chalk')
-var validator = require('validator')
+var validate = require('./util/validate')
+//var validator = require('validator')
 
 // Requiring Actions
 var createProxyServer = require('./actions/createProxyServer')
 
 // Using Validator
-var isDomain = validator.isFQDN
+// var isDomain = validator.isFQDN
 
 /* Uncomment in Production!
 
@@ -29,6 +30,7 @@ if (!shell.which('nginx')) {
 	shell.echo('I need nginx to work. Install nginx first. https://nginx.org/')
 	shell.exit(1)
 }
+
 */
 
 program
@@ -37,32 +39,32 @@ program
 program
 	.command('static <domain> [outPort]')
 	.description('Create a static server at this folder.')
-	.action(function(domain, outPort="") {
-		if(!isDomain(domain)) console.log('\nDomain is not valid. Please use a valid domain name.')
-		// Stuff happens here
+	.action(function(domain, outPort="80") {
+		// stuff happens
 		createStaticServer(domain, outPort)
 	})
 
 program
 	.command('proxy <domain> <inPort> [outPort]')
 	.description('Create a proxy server, listening at port number.')
-	.action(function(domain, inPort, outPort = "") {
+	.action(function(domain, inPort, outPort = "80") {
+		/* Removing this to make it modular
 		var validInPort = /^\d+$/.test(inPort)
 		var validOutPort = /^\d+$/.test(outPort)
 		if(!isDomain(domain)) {
-			console.log('\nDomain is not valid. Please use a valid domain name.')
-			return; }
+			console.log(domainInvalidMsg)
+			return }
 		if(!validInPort || !validOutPort) {
-			// This part doesn't work yet.
-			if (!((validInPort > 0 && validInPort <= 65535) && (validOutPort > 0 && validOutPort <= 65535))) {
-				console.log('\nPort should be a number from 1 and 65535.')
-				return; }
-			console.log('\nPort should be a number.')
-			return; }
-		else {
-			createProxyServer(domain, inPort, outPort)
-			console.log('Done!')
-		}
+			console.log(portInvalidMsg[0])
+			return }
+		if(!((validInPort > 0 && validInPort <= 65535) && (validOutPort > 0 && validOutPort <= 65535))) {
+			console.log(portInvalidMsg[1])
+			return }
+		else { */
+		if (!validate(domain, inPort, outPort)) return
+		createProxyServer(domain, inPort, outPort)
+		console.log("Done! Your server has been set up!\nPoint your domain to this server and check " + chalk.cyan(domain) + " to verify!")
+		//}
 	})
 	
 program

@@ -20,7 +20,7 @@
   "bin": {
     "up": "./index.js"
   },
-  "author": "Muthu Kumar (MKRhere)",
+  "author": "Muthu Kumar (@MKRhere)",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/codefeathers/up-serve/issues"
@@ -28,8 +28,6 @@
   "homepage": "https://github.com/codefeathers/up-serve#readme",
   "dependencies": {
     "chalk": "^2.3.0",
-    "co": "^4.6.0",
-    "co-prompt": "^1.0.0",
     "commander": "^2.11.0",
     "fs-extra": "^4.0.2",
     "shelljs": "^0.7.8",

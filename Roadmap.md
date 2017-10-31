@@ -12,6 +12,7 @@ This living document details our plans for `up`. If you would like to request fe
 - [ ] Option for HTTPS.
 	- MUST add a `-s` flag to enable HTTPS config.
 	- MAY add a `-c` flag to use `certbot` to automatically generate certificates using letsencrypt.
+- [ ] MAY make `up` work on Windows.
 
 Want more features? Raise an [issue!](https://github.com/codefeathers/up-serve/issues)
 
