@@ -8,7 +8,7 @@ function validate(domain, inPort, outPort = undefined) {
 	var portInvalidMsg = ["\nPort should be a number.", "\nPort should be a number from 1 and 65535."]
 	var validInPort = /^\d+$/.test(inPort)
 	var validOutPort = /^\d+$/.test(outPort)
-	var isTrue
+	var isTrue = true
 	if (!isDomain(domain)) {
 		console.log(domainInvalidMsg)
 		return isTrue = false
