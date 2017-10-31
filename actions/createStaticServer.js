@@ -21,7 +21,7 @@ function createStaticServer(domain, outPort = 80) {
         )
         shell.mkdir('-p', npath.enabledSites())
         shell.ln('-sf', conf(npath.availableSites(), domain), conf(npath.enabledSites(), domain))
-        shell.ln('-sf', ".", "/var/www" + domain)
+        shell.ln('-sf', ".", npath.homeDir() + domain)
 }
 
 module.exports = createStaticServer
