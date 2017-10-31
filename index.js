@@ -40,7 +40,7 @@ program
 	.command('static <domain> [outPort]')
 	.description('Create a static server at this folder.')
 	.action(function(domain, outPort="80") {
-		// stuff happens
+		if(!validate(domain, outPort))
 		createStaticServer(domain, outPort)
 	})
 
