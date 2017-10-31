@@ -8,10 +8,5 @@ function enabledSites() {
 	return enabledSites
 }
 
-function conf(path, domain) {
-	return (path + domain + ".conf")
-}
-
-module.exports.conf = conf
 module.exports.availableSites = availableSites
 module.exports.enabledSites = enabledSites
