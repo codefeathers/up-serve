@@ -60,7 +60,7 @@ Alternatively, install from npm:
 
 Plenty of people gave their time guiding me and shaping this tool.
 
-I'd like to thank and give credit to [https://thedevs.network](The Devs Community), who are the primary reason this exists.
+I'd like to thank and give credit to [The Devs Community](https://thedevs.network), who are the primary reason this exists.
 
 I'd also personally thank the following amazing people for their valuable support and feedback: Pouria Ezzati, Thomas Rory Gummerson, Omar Khalil, Martin, Faizan Akram.
 
