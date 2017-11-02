@@ -12,7 +12,7 @@ function createStaticServer(domain, outPort = 80) {
         "server {" + EOL +
         "	listen " + outPort + ";" + EOL +
         "	listen [::]:" + outPort + ";" + EOL +
-        "	root " + npath.webRoot() +  + domain + ";" + EOL +
+        "	root " + npath.webRoot() + domain + ";" + EOL +
         "	index index.html index.htm;" + EOL +
         ""   + EOL +
         "	server_name " + domain + ";" + EOL +
