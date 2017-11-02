@@ -62,6 +62,6 @@ Plenty of people gave their time guiding me and shaping this tool.
 
 I'd like to thank and give credit to [The Devs Community](https://thedevs.network), who are the primary reason this exists.
 
-I'd also personally thank the following amazing people for their valuable support and feedback: Pouria Ezzati, Thomas Rory Gummerson, Omar Khalil, Martin, Faizan Akram.
+I'd also personally thank the following amazing people for their valuable support and feedback: **Pouria Ezzati, Thomas Rory Gummerson, Omar Khalil, Martin, GingerPlusPlus, Faizan Akram.**
 
-And the following people for their moral support and listening to my constant bickering: David (The Humanoid), Иброхеем,  Simon 'SitiSchu' Schürrle.
+And the following people for their moral support and listening to my constant bickering: **David (The Humanoid), Иброхеем,  Simon 'SitiSchu' Schürrle.**
