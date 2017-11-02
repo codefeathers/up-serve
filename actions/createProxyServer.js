@@ -26,6 +26,7 @@ function createProxyServer(domain, inPort, outPort) {
     )
     shell.mkdir('-p', npath.enabledSites()); // Creates directory if doesn't exist
     shell.ln('-sf', conf(npath.availableSites(), domain), conf(npath.enabledSites(), domain)); // Symlink the conf file from sites-available to sites-enabled
+    exec("service nginx reload");
 };
 
 module.exports = createProxyServer;

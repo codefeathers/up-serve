@@ -15,7 +15,7 @@ function createStaticServer(domain, outPort = 80) {
         "	root " + npath.webRoot() +  + domain + ";" + EOL +
         "	index index.html index.htm;" + EOL +
         ""   + EOL +
-        "	server_name " + domain + EOL +
+        "	server_name " + domain + ";" + EOL +
         "	  location / {" + EOL +
         "		try_files $uri $uri/ =404;" + EOL +
         "   }" + EOL +
@@ -27,6 +27,7 @@ function createStaticServer(domain, outPort = 80) {
         shell.rm('-rf', npath.webRoot() + domain); // Removes domain from webroot if exists
         shell.mkdir('-p', npath.webRoot()); // Creating the nginx www path if it doesn't exist so symlink doesn't fail
         shell.ln('-sf', currentPath, npath.webRoot() + domain); // Symlink current directory to nginx's web root
+        exec("service nginx reload");
 };
 
 module.exports = createStaticServer;

@@ -18,7 +18,7 @@ var createStaticServer = require('./actions/createStaticServer');
 // requirements(); // Comment in development and uncomment this line in production. This should check whether the OS is compatible with this version of `up`
 
 program
-	.version('0.0.1')
+	.version('0.1.2')
 
 program
 	.command('static <domain> [outPort]')
@@ -73,3 +73,11 @@ program.on('--help', function () {
 
 // Parses commands passed to `up` and chooses one of the above commands.
 program.parse(process.argv);
+
+try {
+	exec("nginx -t && service reload nginx");
+}
+
+catch {
+	console.log("nginx configuration failed! Unable to reload nginx. Check configuration manually!")
+}
