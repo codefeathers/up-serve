@@ -2,20 +2,33 @@
 
 This living document details our plans for `up`. If you would like to request features or move something up the roadmap, raise an issue!
 
+> ⚠️ ❌ Disclaimers: There is NO guarantee that these will be executed in this order, or if at all. If they are executed, there is NO guarantee that they will follow the same syntax as shown in examples below. For the right syntax, check [README.md](README.md)
+
 > The words `MUST`, `MUST NOT`, `SHOULD`, `SHOULD NOT`, and `MAY` are used in accordance with [RFC 2119](https://tools.ietf.org/html/rfc2119)
 
+## The Roadmap
+
 - [ ] MVP - Minimum Viable Product.
-	- `up static` and `up proxy` MUST work.
-	- `up kill` MUST work.
-- [ ] List servers option.
-	- `up list` MUST provide list of servers running by parsing nginx's `sites-available` and `sites-enabled` folders.
+  - [x] `up static` and `up proxy` MUST work.
+  - [ ] `up kill` MUST work.
+- [ ]List servers option.
+  - [ ] `up list` MUST provide list of servers running by parsing nginx's `sites-available` and `sites-enabled` folders.
+- [ ] `up static` MUST have an option to specify path to root. Example: `up static example.com ./public`.
+- [ ] `up static` and `up proxy` MAY take a Git URL to deploy. Example:
+  1. `up static example.com --git https://github.com/h5bp/html5-boilerplate /html`
+  2. `up proxy example.com 5000 --git https://github.com/heroku/node-js-sample`
 - [ ] Option for HTTPS.
-	- MUST add a `-s` flag to enable HTTPS config.
-	- MAY add a `-c` flag to use `certbot` to automatically generate certificates using letsencrypt.
+  - [ ] MUST add a `-s` or `--secure` flag to enable automatic HTTPS config with HTTP/2 enabled by default.
+    - [ ] HSTS MAY be enabled with a `-s -h`, `-sh`, `-secure -hsts` or `--secure-hsts` flag. Will warn user to be sure of what they are doing.
+  - [ ] MAY add a `-c` flag to use `certbot` to automatically generate certificates using letsencrypt.
+- [ ] SHOULD work on a way to make `up` work on distros other than Deb/Ubuntu based.
 - [ ] MAY make `up` work on Windows.
 
-Want more features? Raise an [issue!](https://github.com/codefeathers/up-serve/issues)
+Want more features or prioritize something? Raise an [issue!](https://github.com/codefeathers/up-serve/issues)
 
 ## Stretch goals
 
-### ♦ Create an `up` client to deploy from anywhere
+- ♦ Create an `up` client to deploy from anywhere
+- ♦ Make `up` an initialization tool that combines `git init`, `npm init`, `vue init`, etc. in a neat package. Examples:
+  1. `up new git`
+  2. `up new vue proxy 4000`

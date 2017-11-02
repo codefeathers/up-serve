@@ -8,29 +8,14 @@ var chalk = require('chalk');
 
 // Requiring utils
 var validate = require('./util/validate');
+var requirements = require('./util/requirements')
 
 // Requiring Actions
 var createProxyServer = require('./actions/createProxyServer');
 var createStaticServer = require('./actions/createStaticServer');
 
-/* Uncomment in Production!
-
-// Detect Linux or BSD
-var isLin = /^linux|^bsd/.test(process.platform);
-
-// Throw if OS is not Linux or BSD. This should be changed to throw if not Debian based distro. Eventually, we can add more exceptions as `up` handles more cases.
-if(!isLin) {
-	shell.echo("\nThis is not a Linux or freeBSD distribution. I'm not written for this distro. Please raise an issue at " + chalk.cyan("https://github.com/codefeathers/up-serve") + " if you want `up` to be ported for your distro");
-	shell.exit(1);
-}
-
-// Throw if Nginx is not found
-if (!shell.which('nginx')) {
-	shell.echo('I need nginx to work. Install nginx first. https://nginx.org/');
-	shell.exit(1);
-}
-
-*/
+// Check for requirements such as OS version and nginx install. Throw and exit if requirements not found. #Roadmap: Add ability to satisfy any possible requirements.
+requirements(); // Comment in development and uncomment this line in production. This should check whether the OS is compatible with this version of `up`
 
 program
 	.version('0.0.1')

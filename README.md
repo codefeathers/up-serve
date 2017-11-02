@@ -8,11 +8,17 @@
 
 # up
 
+> Current version: `up v.0.1.0 (Pre-Alpha)`
+
+> Notes: `up` has landed in pre-alpha! 🎉 Changelog will be added from `up v.0.2.0` [(Alpha/MVP)](Roadmap.md)\
+> ⚠️ ❌ `up` is still not ready for use yet! Do not attempt to use this in development or production until alpha!
+
 **`up`** is a command line application that creates nginx server blocks quickly with a single command.
 
-> ⚠️ ❌ `up` is not ready for use yet! Do not attempt to use this!
 
 ## Installation
+
+As of now, `up` only supports Debian and Ubuntu based distros. Support for more distros will come soon. Add an issue to bump this process.
 
 You will need to have [_node JS_](https://nodejs.org) and [_nginx_](https://nginx.org) installed.
 
@@ -38,7 +44,7 @@ You will need to have [_node JS_](https://nodejs.org) and [_nginx_](https://ngin
 
 `up kill <domain>` - Kill the server for this domain.
 
-## Examples:
+## Examples
 
 `up static example.com` will serve a static website from current folder.
 
