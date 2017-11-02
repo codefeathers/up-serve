@@ -1,17 +1,20 @@
+// These functions just return paths. Later, these should be modified to poll from nginx's config.
+
 function availableSites() {
-	var availableSites = "/etc/nginx/available-sites/";
+	var availableSites = "/etc/nginx/sites-available/";
 	return availableSites;
 }
 
 function enabledSites() {
-	var enabledSites = "/etc/nginx/enabled-sites/";
+	var enabledSites = "/etc/nginx/sites-enabled/";
 	return enabledSites;
 }
 
-function homeDir() {
-	return "/var/www/";
+function webRoot() {
+	var webRoot = "/var/www/";
+	return webRoot;
 }
 
 module.exports.availableSites = availableSites;
 module.exports.enabledSites = enabledSites;
-module.exports.homeDir = homeDir;
+module.exports.webRoot = webRoot;

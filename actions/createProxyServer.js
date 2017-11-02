@@ -1,9 +1,9 @@
-var fs = require('fs-extra')
-var shell = require('shelljs')
-var npath = require('../util/nginxPath')
-var conf = require('../util/nginxConf')
+var fs = require('fs-extra');
+var shell = require('shelljs');
+var npath = require('../util/nginxPath');
+var conf = require('../util/nginxConf');
 
-var { EOL } = require('os');
+var { EOL } = require('os'); // \n if used on Linux, \r\n if used on Windows.
 
 function createProxyServer(domain, inPort, outPort) {
     fs.outputFileSync((conf(npath.availableSites(), domain)),
@@ -24,8 +24,8 @@ function createProxyServer(domain, inPort, outPort) {
         "   }" + EOL +
         "}"
     )
-    shell.mkdir('-p', npath.enabledSites())
-    shell.ln('-sf', conf(npath.availableSites(), domain), conf(npath.enabledSites(), domain))
-}
+    shell.mkdir('-p', npath.enabledSites()); // Creates directory if doesn't exist
+    shell.ln('-sf', conf(npath.availableSites(), domain), conf(npath.enabledSites(), domain)); // Symlink the conf file from sites-available to sites-enabled
+};
 
-module.exports = createProxyServer
+module.exports = createProxyServer;
