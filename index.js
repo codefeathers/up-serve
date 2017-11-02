@@ -78,6 +78,6 @@ try {
 	exec("nginx -t && service reload nginx");
 }
 
-catch {
+catch (e) {
 	console.log("nginx configuration failed! Unable to reload nginx. Check configuration manually!")
 }
