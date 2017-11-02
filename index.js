@@ -5,9 +5,9 @@ var program = require('commander');
 var shell = require('shelljs');
 var fs = require('fs-extra');
 var chalk = require('chalk');
-var bash = require('child_process.exec');
+var { exec } = require('child_process');
 
-var nginxReload = bash("nginx -t && service reload nginx");
+var nginxReload = exec("nginx -t && service reload nginx");
 
 // Requiring utils
 var validate = require('./util/validate');
