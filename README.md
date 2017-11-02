@@ -22,7 +22,7 @@ As of now, `up` only supports Debian and Ubuntu based distros. Support for more 
 
 You will need to have [_node JS_](https://nodejs.org) and [_nginx_](https://nginx.org) installed.
 
-> ⚠️ ❌ You have been warned that `up` is still in development. If you intend to install it for development, follow these instructions:
+If you intend to install up for development, follow these instructions:
 
 `git clone https://github.com/codefeathers/up-serve`
 
@@ -34,7 +34,7 @@ You will need to have [_node JS_](https://nodejs.org) and [_nginx_](https://ngin
 
 > `up` is now available as a command.
 
-Alternatively, install from npm:
+Alternatively, to use `up` on to deploy servers install from npm:
 
 `npm i -g up-serve`
 
