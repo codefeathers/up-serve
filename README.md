@@ -55,3 +55,13 @@ Alternatively, install from npm:
 `up static example.com` will serve a static website from current folder.
 
 `up proxy example.com 8081` will create a reverse proxy listening at port 8081.
+
+## Contributors, Collaborators, and Guides
+
+Plenty of people gave their time guiding me and shaping this tool.
+
+I'd like to thank and give credit to [https://thedevs.network](The Devs Community), who are the primary reason this exists.
+
+I'd also personally thank the following amazing people for their valuable support and feedback: Pouria Ezzati, Thomas Rory Gummerson, Omar Khalil, Martin, Faizan Akram.
+
+And the following people for their moral support and listening to my constant bickering: David (The Humanoid), Иброхеем,  Simon 'SitiSchu' Schürrle.
