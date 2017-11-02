@@ -19,9 +19,11 @@ function createStaticServer(domain, outPort = 80) {
         "   }" + EOL +
         "}"
         )
-        shell.mkdir('-p', npath.enabledSites()) // Creates directory if doesn't exist
-        shell.ln('-sf', conf(npath.availableSites(), domain), conf(npath.enabledSites(), domain)) // Symlink the conf file from sites-available to sites-enabled
-        shell.ln('-sf', ".", npath.webRoot() + domain) // Symlink current directory to nginx's web root
+        shell.mkdir('-p', npath.enabledSites()); // Creates directory if doesn't exist
+        shell.rm('-rf', conf(npath.enabledSites(), domain));
+        shell.ln('-sf', conf(npath.availableSites(), domain), conf(npath.enabledSites(), domain)); // Symlink the conf file from sites-available to sites-enabled
+        shell.rm('-rf', npath.webRoot() + domain);
+        shell.ln('-sf', "./", npath.webRoot() + domain); // Symlink current directory to nginx's web root
 };
 
 module.exports = createStaticServer;
