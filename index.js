@@ -16,7 +16,7 @@ var createStaticServer = require('./actions/createStaticServer');
 var killServer = require('./actions/killServer');
 
 // Check for requirements such as OS version and nginx install. Throw and exit if requirements not found. #Roadmap: Add ability to satisfy any possible requirements.
-// requirements(); // Comment in development and uncomment this line in production. This should check whether the OS is compatible with this version of `up`
+requirements(); // Comment in development and uncomment this line in production. This should check whether the OS is compatible with this version of `up`
 
 program
 	.version('0.1.2');
