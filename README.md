@@ -8,7 +8,7 @@
 
 # up
 
-> Current version: `up v.0.1.3 (Pre-Alpha)`
+> Current version: `up v.0.1.4 (Pre-Alpha)`
 
 > Notes: `up` has landed in pre-alpha! 🎉 Changelog will be added from `up v.0.2.0` [(Alpha/MVP)](Roadmap.md)\
 > ⚠️ ❌ `up` is still not ready for use yet! Do not attempt to use this in development or production until alpha!
@@ -22,19 +22,7 @@ As of now, `up` only supports Debian and Ubuntu based distros. Support for more 
 
 You will need to have [_node JS_](https://nodejs.org) and [_nginx_](https://nginx.org) installed.
 
-If you intend to install up for development, follow these instructions:
-
-`git clone https://github.com/codefeathers/up-serve`
-
-`cd up-serve`
-
-`npm install`
-
-`npm install -g`
-
-> `up` is now available as a command.
-
-Alternatively, to use `up` on to deploy servers install from npm:
+Install `up` from npm:
 
 `npm i -g up-serve`
 
@@ -46,7 +34,7 @@ Alternatively, to use `up` on to deploy servers install from npm:
 
 `up proxy <domain> <port>` - Create new proxy server listening at said port.
 
-`up list` - List currently available servers.
+`up list` - List currently available servers. (Doesn't work yet)
 
 `up kill <domain>` - Kill the server for this domain.
 
@@ -55,6 +43,8 @@ Alternatively, to use `up` on to deploy servers install from npm:
 `up static example.com` will serve a static website from current folder.
 
 `up proxy example.com 8081` will create a reverse proxy listening at port 8081.
+
+`up kill example.com`
 
 ## Contributors, Collaborators, and Guides
 

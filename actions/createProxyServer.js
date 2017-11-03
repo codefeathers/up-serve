@@ -1,5 +1,6 @@
 var fs = require('fs-extra');
 var shell = require('shelljs');
+
 var npath = require('../util/nginxPath');
 var conf = require('../util/nginxConf');
 var nginxReload = require('../util/nginxReload');

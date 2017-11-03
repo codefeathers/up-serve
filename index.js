@@ -13,50 +13,52 @@ var requirements = require('./util/requirements')
 // Requiring Actions
 var createProxyServer = require('./actions/createProxyServer');
 var createStaticServer = require('./actions/createStaticServer');
+var killServer = require('./actions/killServer');
 
 // Check for requirements such as OS version and nginx install. Throw and exit if requirements not found. #Roadmap: Add ability to satisfy any possible requirements.
-requirements(); // Comment in development and uncomment this line in production. This should check whether the OS is compatible with this version of `up`
+// requirements(); // Comment in development and uncomment this line in production. This should check whether the OS is compatible with this version of `up`
 
 program
-	.version('0.1.2')
+	.version('0.1.2');
 
 program
 	.command('static <domain> [outPort]')
 	.description('Create a static server at this folder.')
 	.action(function (domain, outPort = 80) { //If outport is not given, 80 is set as default. Later, change this default to reflect nginx's settings.
-		if (!validate(domain, outPort)) return //Validates domain and outport, and if invalid, throws and returns.
-		createStaticServer(domain, outPort)
-		console.log("Done! Your static server has been set up!\nPoint your domain to this server and check " + chalk.cyan(domain) + " to verify!")
-	})
+		if (!validate(domain, outPort)) return; //Validates domain and outport, and if invalid, throws and returns.
+		createStaticServer(domain, outPort);
+		console.log("Done! Your static server has been set up!\nPoint your domain to this server and check " + chalk.cyan(domain) + " to verify!");
+	});
 
 program
 	.command('proxy <domain> <inPort> [outPort]')
 	.description('Create a proxy server, listening at port number.')
 	.action(function (domain, inPort, outPort = "80") { //Inbound port is necessary, but outbound is set to 80 by default. Again, will change this to reflect nginx's settings.
-		if (!validate(domain, inPort, outPort)) return
-		createProxyServer(domain, inPort, outPort)
-		console.log("Done! Your reverse proxy server has been set up!\nPoint your domain to this server and check " + chalk.cyan(domain) + " to verify!")
-	})
+		if (!validate(domain, inPort, outPort)) return;
+		createProxyServer(domain, inPort, outPort);
+		console.log("Done! Your reverse proxy server has been set up!\nPoint your domain to this server and check " + chalk.cyan(domain) + " to verify!");
+	});
 
 program
 	.command('list')
 	.description('List all available servers.')
 	.action(function () {
 		// Stuff happens here
-	})
+	});
 
 program
 	.command('kill <domain>')
 	.description('Kill a server.')
 	.action(function (domain) {
-		// Stuff happens here
-	})
+		killServer(domain);
+		console.log("Done! Your server has been killed!\n");
+	});
 
 program
 	.command('*') // This should pick invalid commands, but it doesn't, yet.
 	.action(function () {
 		console.log("Invalid command. Type " + chalk.cyan('up --help') + " for help.")
-	})
+	});
 
 // Adds custom help text to the automatically generated help.
 program.on('--help', function () {
