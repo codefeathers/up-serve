@@ -1,14 +1,14 @@
-var { exec } = require('child_process');
+var { execSync } = require('child_process');
 
 function nginxReload() {
-	exec('service nginx reload', (error, stdout, stderr) => {
-		if (error) {
+	execSync('service nginx reload', function (error, stdout, stderr) {                 
+		if (error) {                                                                      
 			console.error(`exec error: ${error}`);
+			console.log(`stdout: ${stdout}`);
+			console.log(`stderr: ${stderr}`);
 			return;
-		}
-		console.log(`stdout: ${stdout}`);
-		console.log(`stderr: ${stderr}`);
-	});
+		}                                                                            
+	})
 }
 
 module.exports = nginxReload;
