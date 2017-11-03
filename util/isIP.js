@@ -2,21 +2,22 @@
 
 function isIP(str) {
 	var segments = str
-	  .split('.')
-	  .map(Number);
+		.split(".")
+		.map(Number);
 	if (!segments.length === 4) {
-	  return false;
+		return false;
 	}
-	for (var segment of segments) {
-	  if (Number.isNaN(segment)) {
-		return false;
-	  }
-	  if (segment < 1 || segment > 255) {
-		return false;
-	  }
+	for(var i = 0; i < segments.length; i++) {
+		var segment = segments[i];
+		if (Number.isNaN(segment)) {
+			return false;
+		}
+		if (segment < 1 || segment > 255) {
+			return false;
+		}
 	}
 	if (segments[3] > 254) {
-	  return false;
+		return false;
 	}
 	return true;
 }

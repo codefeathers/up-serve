@@ -2,13 +2,11 @@
 
 // Requiring npm modules
 var program = require('commander');
-var shell = require('shelljs');
-var fs = require('fs-extra');
 var chalk = require('chalk');
 
 // Requiring utils
 var validate = require('./util/validate');
-var requirements = require('./util/requirements')
+var requirements = require('./util/requirements');
 
 // Requiring Actions
 var createProxyServer = require('./actions/createProxyServer');
@@ -24,7 +22,8 @@ program
 program
 	.command('static <domain> [outPort]')
 	.description('Create a static server at this folder.')
-	.action(function (domain, outPort = 80) { //If outport is not given, 80 is set as default. Later, change this default to reflect nginx's settings.
+	.action(function (domain, outPort) { //If outport is not given, 80 is set as default. Later, change this default to reflect nginx's settings.
+		outPort = outPort || "80"; // This is a string because regex needs to validate it.
 		if (!validate(domain, outPort)) return; //Validates domain and outport, and if invalid, throws and returns.
 		createStaticServer(domain, outPort);
 		console.log("Done! Your static server has been set up!\nPoint your domain to this server and check " + chalk.cyan(domain) + " to verify!");
@@ -33,7 +32,8 @@ program
 program
 	.command('proxy <domain> <inPort> [outPort]')
 	.description('Create a proxy server, listening at port number.')
-	.action(function (domain, inPort, outPort = "80") { //Inbound port is necessary, but outbound is set to 80 by default. Again, will change this to reflect nginx's settings.
+	.action(function (domain, inPort, outPort) { //Inbound port is necessary, but outbound is set to 80 by default. Again, will change this to reflect nginx's settings.
+		outPort = outPort || "80"; // This is a string because regex needs to validate it.
 		if (!validate(domain, inPort, outPort)) return;
 		createProxyServer(domain, inPort, outPort);
 		console.log("Done! Your reverse proxy server has been set up!\nPoint your domain to this server and check " + chalk.cyan(domain) + " to verify!");
@@ -49,7 +49,8 @@ program
 program
 	.command('kill <domain> [ourPort]')
 	.description('Kill a server.')
-	.action(function (domain, outPort = 80) {
+	.action(function (domain, outPort) {
+		outPort = outPort || "80"; // This is a string because regex needs to validate it.
 		killServer(domain, outPort);
 		console.log("\nDone! Your server has been killed!\n");
 	});
@@ -57,7 +58,7 @@ program
 program
 	.command('*') // This should pick invalid commands, but it doesn't, yet.
 	.action(function () {
-		console.log("Invalid command. Type " + chalk.cyan('up --help') + " for help.")
+		console.log("Invalid command. Type " + chalk.cyan('up --help') + " for help.");
 	});
 
 // Adds custom help text to the automatically generated help.

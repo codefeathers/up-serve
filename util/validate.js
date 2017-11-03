@@ -5,7 +5,10 @@ var isIP = require('./isIP');
 // Using Validator
 var isDomain = validator.isFQDN;
 
-function validate(domain, inPort = undefined, outPort = "80") {
+function validate(domain, inPort, outPort) {
+	//
+	inPort = inPort || undefined;
+	outPort = outPort || 80;
 
 	// Error messages
 	var domainInvalidMsg = ["\nPlease use a domain name instead of an IP address.", "\nDomain is not valid. Please use a valid domain name."];

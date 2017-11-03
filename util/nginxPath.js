@@ -17,7 +17,7 @@ function webRoot() {
 }
 
 function webRootDomain(domain, outPort) {
-	rootWithDomain = wwwRoot + domain + "." + outPort;
+	var rootWithDomain = wwwRoot + domain + "." + outPort;
 	return rootWithDomain;
 }
 
