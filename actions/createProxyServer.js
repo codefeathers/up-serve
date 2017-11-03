@@ -2,6 +2,7 @@ var fs = require('fs-extra');
 var shell = require('shelljs');
 var npath = require('../util/nginxPath');
 var conf = require('../util/nginxConf');
+var nginxReload = require('../util/nginxReload');
 
 var { EOL } = require('os'); // \n if used on Linux, \r\n if used on Windows.
 
@@ -26,7 +27,8 @@ function createProxyServer(domain, inPort, outPort) {
     )
     shell.mkdir('-p', npath.enabledSites()); // Creates directory if doesn't exist
     shell.ln('-sf', conf(npath.availableSites(), domain), conf(npath.enabledSites(), domain)); // Symlink the conf file from sites-available to sites-enabled
-    exec("service nginx reload");
+
+    nginxReload();
 };
 
 module.exports = createProxyServer;

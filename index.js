@@ -5,9 +5,6 @@ var program = require('commander');
 var shell = require('shelljs');
 var fs = require('fs-extra');
 var chalk = require('chalk');
-var { exec } = require('child_process');
-
-var nginxReload = exec("nginx -t && service reload nginx");
 
 // Requiring utils
 var validate = require('./util/validate');
@@ -18,7 +15,7 @@ var createProxyServer = require('./actions/createProxyServer');
 var createStaticServer = require('./actions/createStaticServer');
 
 // Check for requirements such as OS version and nginx install. Throw and exit if requirements not found. #Roadmap: Add ability to satisfy any possible requirements.
-// requirements(); // Comment in development and uncomment this line in production. This should check whether the OS is compatible with this version of `up`
+requirements(); // Comment in development and uncomment this line in production. This should check whether the OS is compatible with this version of `up`
 
 program
 	.version('0.1.2')
@@ -76,11 +73,3 @@ program.on('--help', function () {
 
 // Parses commands passed to `up` and chooses one of the above commands.
 program.parse(process.argv);
-
-try {
-	nginxReload();
-}
-
-catch (e) {
-	console.log("nginx configuration failed! Unable to reload nginx. Check configuration manually!")
-}

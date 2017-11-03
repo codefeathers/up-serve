@@ -3,6 +3,7 @@ var shell = require('shelljs');
 var npath = require('../util/nginxPath');
 var conf = require('../util/nginxConf');
 var path = require('path');
+var nginxReload = require('../util/nginxReload');
 
 var currentPath = path.normalize(process.cwd());
 var { EOL } = require('os'); // \n if used on Linux, \r\n if used on Windows.
@@ -27,7 +28,8 @@ function createStaticServer(domain, outPort = 80) {
         shell.rm('-rf', npath.webRoot() + domain); // Removes domain from webroot if exists
         shell.mkdir('-p', npath.webRoot()); // Creating the nginx www path if it doesn't exist so symlink doesn't fail
         shell.ln('-sf', currentPath, npath.webRoot() + domain); // Symlink current directory to nginx's web root
-        exec("service nginx reload");
+
+        nginxReload();
 };
 
 module.exports = createStaticServer;
