@@ -26,6 +26,7 @@ program
 		outPort = outPort || "80"; // This is a string because regex needs to validate it.
 		if (!validate(domain, outPort)) return; //Validates domain and outport, and if invalid, throws and returns.
 		createStaticServer(domain, outPort);
+		if (outPort != "80") domain = domain + ":" + outPort;
 		console.log("Done! Your static server has been set up!\nPoint your domain to this server and check " + chalk.cyan(domain) + " to verify!");
 	});
 
@@ -36,6 +37,7 @@ program
 		outPort = outPort || "80"; // This is a string because regex needs to validate it.
 		if (!validate(domain, inPort, outPort)) return;
 		createProxyServer(domain, inPort, outPort);
+		if (outPort != "80") domain = domain + ":" + outPort;
 		console.log("Done! Your reverse proxy server has been set up!\nPoint your domain to this server and check " + chalk.cyan(domain) + " to verify!");
 	});
 
