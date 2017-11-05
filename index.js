@@ -5,8 +5,8 @@ var program = require('commander');
 var chalk = require('chalk');
 
 // Requiring utils
-var validate = require('./util/validate');
-var requirements = require('./util/requirements');
+var validate = require('./utils/validate');
+var requirements = require('./utils/requirements');
 
 // Requiring Actions
 var createProxyServer = require('./actions/createProxyServer');
