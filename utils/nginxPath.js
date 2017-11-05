@@ -2,7 +2,7 @@
 
 var available = "/etc/nginx/sites-available/";
 var enabled = "/etc/nginx/sites-enabled/";
-var wwwRoot = "/var/www/";
+var wwwRoot = "/etc/up-serve/static/";
 
 function availableSites() {
 	return available;
