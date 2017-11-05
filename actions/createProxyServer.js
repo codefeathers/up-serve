@@ -1,9 +1,9 @@
 var fs = require('fs-extra');
 var shell = require('shelljs');
 
-var npath = require('../util/nginxPath');
-var conf = require('../util/nginxConf');
-var nginxReload = require('../util/nginxReload');
+var npath = require('../utils/nginxPath');
+var conf = require('../utils/nginxConf');
+var nginxReload = require('../utils/nginxReload');
 
 var EOL = require('os').EOL; // \n if used on Linux, \r\n if used on Windows.
 

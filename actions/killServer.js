@@ -1,8 +1,8 @@
 var shell = require('shelljs');
 
-var npath = require('../util/nginxPath');
-var conf = require('../util/nginxConf');
-var nginxReload = require('../util/nginxReload');
+var npath = require('../utils/nginxPath');
+var conf = require('../utils/nginxConf');
+var nginxReload = require('../utils/nginxReload');
 
 function killServer(domain, outPort) {
 	shell.rm('-rf', conf(npath.enabledSites(), domain, outPort));
