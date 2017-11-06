@@ -1,13 +1,22 @@
 // These functions just return paths.
 
-var list = 'etc/up-serve/servers.up';
+var fs = require('fs-extra');
+var shell = require('shelljs');
+var EOL = require('os').EOL; // \n if used on Linux, \r\n if used on Windows.
+
+var listFilePath = 'etc/up-serve/servers.up';
 
 function list(domain, inPort, outPort) {
+    fs.ensureFileSync(listFilePath) // Creates directory if doesn't exist
+
     if (inPort) {
-        return (list + '  ' + domain + ':' + outPort + '  ' + 'proxy' + '  ' + inPort);
+        var addr = domain + ':' + outPort + '  ' + 'proxy' + '  ' + inPort + EOL;
     } else {
-        return (list + '  ' + domain + ':' + outPort + '  ' + 'static');
+        var addr = domain + ':' + outPort + '  ' + 'static' + EOL;
     }
+
+    //wirtes to the file in path
+    fs.appendFileSync(listFilePath, addr);
 }
 
 module.exports = listFile;
