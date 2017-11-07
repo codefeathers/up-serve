@@ -27,8 +27,6 @@ function appendToList(domain, outPort, inPort) {
 				"inPort": inPort
 		}
 	}
-
-	jsonFile = {}
 	
 	if (fs.existsSync(listFilePath)) {
 		jsonFile = fs.readFileSync(listFilePath);
@@ -45,7 +43,6 @@ function appendToList(domain, outPort, inPort) {
 		jsonFile = beautifyJSON(jsonFile, null, 2, 30);
 	}
 	else {
-		jsonFile = {}
 		jsonFile[domain] = domBlock;
 		jsonFile = beautifyJSON(jsonFile);
 	}
