@@ -30,21 +30,18 @@ Install `up` from npm:
 
 ## Commands
 
-`up static <domain>` - Create new static server at current folder.
+Format: `up command <required> [optional]`
 
-`up proxy <domain> <port>` - Create new proxy server listening at said port.
-
-`up list` - List currently available servers. (Doesn't work yet)
-
-`up kill <domain>` - Kill the server for this domain.
+- `up static <domain> [outbound port]` - Create new static server at current folder.
+- `up proxy <domain> <inbound port> [outbound port]` - Create new proxy server listening at said port.
+- `up list` - List currently available servers. (Doesn't work yet)
+- `up kill <domain>` - Kill the server for this domain.
 
 ## Examples
 
-`up static example.com` will serve a static website from current folder.
-
-`up proxy example.com 8081` will create a reverse proxy listening at port 8081.
-
-`up kill example.com`
+- `up static example.com` will serve a static website from current folder.
+- `up proxy example.com 8081` will create a reverse proxy listening at port 8081.
+- `up kill example.com`
 
 ## Contributors, Collaborators, and Guides
 

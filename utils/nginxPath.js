@@ -2,7 +2,7 @@
 
 var enabled = "/etc/nginx/sites-enabled/";
 var conf = "/etc/nginx/conf.d/";
-var wwwRoot = "/var/www/";
+var wwwRoot = "/etc/up-serve/static/";
 
 function enabledSites() {
 	return enabled;
