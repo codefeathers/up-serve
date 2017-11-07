@@ -14,17 +14,19 @@ var createProxyServer = require('./actions/createProxyServer');
 var createStaticServer = require('./actions/createStaticServer');
 var killServer = require('./actions/killServer');
 
-var jsonFile;
 //appendToList("example.com", "80");
 //appendToList("example2.com", "80", "4000");
 //appendToList("example2.com", "80", "4444");
 
-console.log(jsonFile);
 // Check for requirements such as OS version and nginx install. Throw and exit if requirements not found. #Roadmap: Add ability to satisfy any possible requirements.
 requirements(); // Comment in development and uncomment this line in production. This should check whether the OS is compatible with this version of `up`
 
 program
-	.version('0.1.5');
+	.version('0.1.5')
+	.arguments('<cmd> [options]')
+	.action ( function(cmd) {
+		var cmdValue = cmd;
+	});
 
 program
 	.command('static <domain> [outPort]')
@@ -65,9 +67,9 @@ program
 	});
 
 program
-	.command('*') // This should pick invalid commands, but it doesn't, yet.
+	.command('*') // This picks invalid commands, but doesn't pick empty commands, yet.
 	.action(function () {
-		console.log("Invalid command. Type " + chalk.cyan('up --help') + " for help.");
+		console.log("\n Invalid command. Type " + chalk.cyan('up --help') + " for help.\n");
 	});
 
 // Adds custom help text to the automatically generated help.
@@ -85,3 +87,8 @@ program.on('--help', function () {
 
 // Parses commands passed to `up` and chooses one of the above commands.
 program.parse(process.argv);
+
+if (typeof cmdValue == 'undefined') {
+	console.log("\nNo commands given. Exiting...\n");
+	process.exit(1);
+}
