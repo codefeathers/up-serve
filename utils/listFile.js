@@ -4,12 +4,9 @@ var beautifyJSON = require("json-beautify");
 
 var EOL = require('os').EOL; // \n if used on Linux, \r\n if used on Windows.
 
-var listFileDir = "/etc/up-serve/";
-var listFilePath = listFileDir + "servers.up";
+var listFilePath = "/etc/up-serve/servers.up";
 
 function appendToList(domain, outPort, inPort) {
-
-	shell.mkdir('-p', listFileDir);
 
 	var jsonFile = {};
 	var domBlock;
