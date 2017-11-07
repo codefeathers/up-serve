@@ -1,5 +1,6 @@
 var fs = require('fs-extra');
 var shell = require('shelljs');
+var beautifyJSON = require("json-beautify");
 
 var EOL = require('os').EOL; // \n if used on Linux, \r\n if used on Windows.
 
@@ -24,17 +25,7 @@ function appendToList(domain, outPort, inPort) {
 		}
 	}
 
-	jsonFile = {
-	}
-
-	var newBlock = {
-		
-	}
-/*
-	Object.assign(jsonFile, domain.domBlock)
-	return jsonFile;
-*/
-	
+	jsonFile = {}
 	
 	if (fs.existsSync(listFilePath)) {
 		jsonFile = fs.readFileSync(listFilePath);
@@ -48,13 +39,12 @@ function appendToList(domain, outPort, inPort) {
 		}
 
 		jsonFile[domain] = domBlock;
-		jsonFile = JSON.stringify(jsonFile);
+		jsonFile = beautifyJSON(jsonFile, null, 2, 30);
 	}
 	else {
-		jsonFile = {
-		}
+		jsonFile = {}
 		jsonFile[domain] = domBlock;
-		jsonFile = JSON.stringify(jsonFile);
+		jsonFile = beautifyJSON(jsonFile);
 	}
 		fs.writeFileSync(listFilePath, jsonFile);
  

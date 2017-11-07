@@ -15,9 +15,9 @@ var createStaticServer = require('./actions/createStaticServer');
 var killServer = require('./actions/killServer');
 
 var jsonFile;
-// appendToList("example.com", "80");
-// appendToList("example2.com", "80", "4000");
-// appendToList("example2.com", "80", "4444");
+//appendToList("example.com", "80");
+//appendToList("example2.com", "80", "4000");
+//appendToList("example2.com", "80", "4444");
 
 console.log(jsonFile);
 // Check for requirements such as OS version and nginx install. Throw and exit if requirements not found. #Roadmap: Add ability to satisfy any possible requirements.
