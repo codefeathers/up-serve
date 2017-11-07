@@ -14,10 +14,8 @@ var createProxyServer = require('./actions/createProxyServer');
 var createStaticServer = require('./actions/createStaticServer');
 var killServer = require('./actions/killServer');
 
-
-// appendToList("example.com", "80");
-// appendToList("example2.com", "80", "4000");
-
+appendToList("example.com", "80");
+appendToList("example2.com", "80", "4000");
 
 // Check for requirements such as OS version and nginx install. Throw and exit if requirements not found. #Roadmap: Add ability to satisfy any possible requirements.
 requirements(); // Comment in development and uncomment this line in production. This should check whether the OS is compatible with this version of `up`
