@@ -3,16 +3,21 @@
 // Requiring npm modules
 var program = require('commander');
 var chalk = require('chalk');
-
-// Requiring utils
-var validate = require('./utils/validate');
-var requirements = require('./utils/requirements');
-var appendToList = require('./utils/listFile');
+var fs = require('fs-extra');
+var prettyjson = require('prettyjson');
 
 // Requiring Actions
 var createProxyServer = require('./actions/createProxyServer');
 var createStaticServer = require('./actions/createStaticServer');
 var killServer = require('./actions/killServer');
+
+// Requiring utils
+var validate = require('./utils/validate');
+var requirements = require('./utils/requirements');
+var appendToList = require('./utils/listFile').appendToList;
+var readServers = require('./utils/listFile').readServers;
+
+var EOL = require('os').EOL;
 
 // Check for requirements such as OS version and nginx install. Throw and exit if requirements not found. #Roadmap: Add ability to satisfy any possible requirements.
 requirements(); // Comment in development and uncomment this line in production. This should check whether the OS is compatible with this version of `up`
@@ -28,7 +33,7 @@ program
 		if (!validate(domain, outPort)) return; //Validates domain and outport, and if invalid, throws and returns.
 		createStaticServer(domain, outPort);
 		if (outPort != "80" || "443") domain = domain + ":" + outPort;
-		console.log("Done! Your static server has been set up!\nPoint your domain to this server and check " + chalk.cyan(domain) + " to verify!");
+		console.log("\nDone! Your static server has been set up!\nPoint your domain to this server and check " + chalk.cyan(domain) + " to verify!");
 	});
 
 program
@@ -39,14 +44,15 @@ program
 		if (!validate(domain, inPort, outPort)) return;
 		createProxyServer(domain, inPort, outPort);
 		if (outPort != "80" || "443") domain = domain + ":" + outPort;
-		console.log("Done! Your reverse proxy server has been set up!\nPoint your domain to this server and check " + chalk.cyan(domain) + " to verify!");
+		console.log("\nDone! Your reverse proxy server has been set up!\nPoint your domain to this server and check " + chalk.cyan(domain) + " to verify!");
 	});
 
 program
 	.command('list')
 	.description('List all available servers.')
 	.action(function () {
-		// Stuff happens here
+		var serversList = readServers();
+		console.log(EOL + prettyjson.render(serversList) + EOL);
 	});
 
 program
@@ -61,7 +67,7 @@ program
 program
 	.command('*') // This should pick invalid commands, but it doesn't, yet.
 	.action(function () {
-		console.log("Invalid command. Type " + chalk.cyan('up --help') + " for help.");
+		console.log("\nInvalid command. Type " + chalk.cyan('up --help') + " for help.\n");
 	});
 
 // Adds custom help text to the automatically generated help.

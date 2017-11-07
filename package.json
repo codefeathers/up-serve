@@ -31,6 +31,7 @@
 		"commander": "^2.11.0",
 		"fs-extra": "^4.0.2",
 		"json-beautify": "^1.0.1",
+		"prettyjson": "^1.2.1",
 		"shelljs": "^0.7.8",
 		"validator": "^9.1.1"
 	}

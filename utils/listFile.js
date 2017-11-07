@@ -7,7 +7,8 @@ var EOL = require('os').EOL; // \n if used on Linux, \r\n if used on Windows.
 var listFilePath = "/etc/up-serve/servers.up";
 
 function appendToList(domain, outPort, inPort) {
-
+	
+	inPort = inPort || undefined;
 	var jsonFile = {};
 	var domBlock;
 
@@ -43,8 +44,34 @@ function appendToList(domain, outPort, inPort) {
 		jsonFile[domain] = domBlock;
 		jsonFile = beautifyJSON(jsonFile);
 	}
-		fs.writeFileSync(listFilePath, jsonFile);
+	fs.writeFileSync(listFilePath, jsonFile);
  
 }
 
-module.exports = appendToList;
+function readServers () {
+	return JSON.parse(fs.readFileSync(listFilePath));
+}
+
+function removeFromList (domain, outPort) {
+	var jsonFile = {};
+	if (fs.existsSync(listFilePath)) {
+		jsonFile = fs.readFileSync(listFilePath);
+		jsonFile = JSON.parse(jsonFile);
+
+		for (block in jsonFile) {
+			if (block.domain == domain && block.domain.outPort == outPort) {
+				delete jsonFile.block;
+				return;
+			}
+		}
+
+		jsonFile = beautifyJSON(jsonFile, null, 2, 30);
+	}
+	else {
+		console.log("\Domain was not in my list. Are you sure?\n")
+	}
+	fs.writeFileSync(listFilePath, jsonFile);
+}
+
+module.exports.appendToList = appendToList;
+module.exports.readServers = readServers;
