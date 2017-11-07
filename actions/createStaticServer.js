@@ -5,6 +5,7 @@ var path = require('path');
 var npath = require('../utils/nginxPath');
 var conf = require('../utils/nginxConf');
 var nginxReload = require('../utils/nginxReload');
+var appendToList = require('../utils/listFile').appendToList;
 
 var currentPath = path.normalize(process.cwd());
 var EOL = require('os').EOL; // \n if used on Linux, \r\n if used on Windows.

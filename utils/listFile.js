@@ -31,7 +31,7 @@ function appendToList(domain, outPort, inPort) {
 		jsonFile = JSON.parse(jsonFile);
 
 		for (block in jsonFile) {
-			if (block.domain == domain && block.domain.outPort == outPort) {
+			if (block[domain] == domain && block[domain].outPort == outPort) {
 				delete jsonFile.block;
 				return;
 			}
@@ -45,11 +45,6 @@ function appendToList(domain, outPort, inPort) {
 		jsonFile = beautifyJSON(jsonFile);
 	}
 	fs.writeFileSync(listFilePath, jsonFile);
- 
-}
-
-function readServers () {
-	return JSON.parse(fs.readFileSync(listFilePath));
 }
 
 function removeFromList (domain, outPort) {
@@ -59,8 +54,9 @@ function removeFromList (domain, outPort) {
 		jsonFile = JSON.parse(jsonFile);
 
 		for (block in jsonFile) {
-			if (block.domain == domain && block.domain.outPort == outPort) {
+			if (block[domain] == domain && block[domain].outPort == outPort) {
 				delete jsonFile.block;
+				console.log('\nDomain was deleted successfully.\n');
 				return;
 			}
 		}
@@ -73,5 +69,10 @@ function removeFromList (domain, outPort) {
 	fs.writeFileSync(listFilePath, jsonFile);
 }
 
+function readServers () {
+	return JSON.parse(fs.readFileSync(listFilePath));
+}
+
 module.exports.appendToList = appendToList;
 module.exports.readServers = readServers;
+module.exports.removeFromList = removeFromList;
