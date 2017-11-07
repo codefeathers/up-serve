@@ -4,11 +4,12 @@ var shell = require('shelljs');
 var npath = require('../utils/nginxPath');
 var conf = require('../utils/nginxConf');
 var nginxReload = require('../utils/nginxReload');
+var appendToList = require('../utils/listFile').appendToList;
 
 var EOL = require('os').EOL; // \n if used on Linux, \r\n if used on Windows.
 
 function createProxyServer(domain, inPort, outPort) {
-	fs.outputFileSync((conf(npath.availableSites(), domain, outPort)),
+	fs.outputFileSync((conf(npath.confD(), domain, outPort)),
 		"server {" + EOL +
 		"	listen " + outPort + ";" + EOL +
 		"	listen [::]:" + outPort + ";" + EOL +
@@ -26,8 +27,9 @@ function createProxyServer(domain, inPort, outPort) {
 		"}"
 	);
 	shell.mkdir('-p', npath.enabledSites()); // Creates directory if doesn't exist
-	shell.ln('-sf', conf(npath.availableSites(), domain, outPort), conf(npath.enabledSites(), domain, outPort)); // Symlink the conf file from sites-available to sites-enabled
+	shell.ln('-sf', conf(npath.confD(), domain, outPort), conf(npath.enabledSites(), domain, outPort)); // Symlink the conf file from sites-available to sites-enabled
 
+	appendToList(domain, outPort, inPort);
 	nginxReload();
 }
 

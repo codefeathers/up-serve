@@ -1,15 +1,15 @@
 // These functions just return paths. Later, these should be modified to poll from nginx's config.
 
-var available = "/etc/nginx/sites-available/";
 var enabled = "/etc/nginx/sites-enabled/";
+var conf = "/etc/nginx/conf.d/";
 var wwwRoot = "/etc/up-serve/static/";
-
-function availableSites() {
-	return available;
-}
 
 function enabledSites() {
 	return enabled;
+}
+
+function confD() {
+	return conf;
 }
 
 function webRoot() {
@@ -21,7 +21,7 @@ function webRootDomain(domain, outPort) {
 	return rootWithDomain;
 }
 
-module.exports.availableSites = availableSites;
+module.exports.confD = confD;
 module.exports.enabledSites = enabledSites;
 module.exports.webRoot = webRoot;
 module.exports.webRootDomain = webRootDomain;
