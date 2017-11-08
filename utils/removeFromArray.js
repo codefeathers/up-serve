@@ -5,9 +5,6 @@ function removeFromArray (arr, dom, port) {
 
 	if (shouldDelete[0]) {
 		arr.splice(shouldDelete[1], 1);
-		console.log('\nItem was deleted!\n');
-	} else {
-		console.log('\nItem was not found!\n');
 	}
 	return arr;
 }
