@@ -10,8 +10,8 @@ function killServer(domain, outPort) {
 	shell.rm('-rf', conf(npath.confD(), domain, outPort));
 	shell.rm('-rf', npath.webRootDomain(domain, outPort));
 
-	nginxReload();
 	removeFromList(domain, outPort);
+	nginxReload();
 }
 
 module.exports = killServer;

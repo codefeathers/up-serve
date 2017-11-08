@@ -4,7 +4,8 @@
 	"description": "A cli tool to quickly create and manage nginx server blocks.",
 	"main": "index.js",
 	"scripts": {
-		"test": "echo \"Error: no test specified\" && exit 1"
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"build": "node ./build/fetchTLDS"
 	},
 	"repository": {
 		"type": "git",
@@ -30,10 +31,8 @@
 		"chalk": "^2.3.0",
 		"commander": "^2.11.0",
 		"fs-extra": "^4.0.2",
-		"json-beautify": "^1.0.1",
 		"prettyjson": "^1.2.1",
-		"shelljs": "^0.7.8",
-		"validator": "^9.1.1"
+		"shelljs": "^0.7.8"
 	},
 	"devDependencies": {
 		"eslint": "^4.10.0"

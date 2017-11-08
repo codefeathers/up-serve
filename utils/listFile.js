@@ -1,49 +1,48 @@
 var fs = require('fs-extra');
 var shell = require('shelljs');
-var beautifyJSON = require("json-beautify");
+
+var removeFromArray = require('./removeFromArray');
 
 var EOL = require('os').EOL; // \n if used on Linux, \r\n if used on Windows.
 
-var listFilePath = "/etc/up-serve/servers.up";
+var listFilePath = "./servers.up";
 
 function appendToList(domain, outPort, inPort) {
 	
 	inPort = inPort || undefined;
-	var jsonFile = {};
+	var jsonFile = { "domains": [] };
 	var domBlock;
 
 	if (!inPort) {
 		domBlock = {
-				"type": "static",
-				"outPort": outPort,
-				"inPort": undefined
-		}
+			"domain": domain,
+			"type": "static",
+			"outPort": outPort
+		};
 	} else {
 		domBlock = {
-				"type": "proxy",
-				"outPort": outPort,
-				"inPort": inPort
-		}
+			"domain": domain,
+			"type": "proxy",
+			"outPort": outPort,
+			"inPort": inPort
+		};
 	}
 	
 	if (fs.existsSync(listFilePath)) {
 		jsonFile = fs.readFileSync(listFilePath);
 		jsonFile = JSON.parse(jsonFile);
 
-		for (block in jsonFile) {
-			if (block[domain] == domain && block[domain].outPort == outPort) {
-				delete jsonFile.block;
-				return;
+		/*for (name in jsonFile) {
+			if (name == domain && jsonFile[name][outPort] == outPort) {
+			delete jsonFile[domain];
+			console.log('\nDomain was deleted successfully.\n');
 			}
-		}
-
-		jsonFile[domain] = domBlock;
-		jsonFile = beautifyJSON(jsonFile, null, 2, 30);
+		}*/
+		jsonFile = removeFromArray(jsonFile.domains, domain, outPort);
 	}
-	else {
-		jsonFile[domain] = domBlock;
-		jsonFile = beautifyJSON(jsonFile);
-	}
+	
+	jsonFile.domains.push(domBlock);
+	jsonFile = JSON.stringify(jsonFile, null, '\t');
 	fs.writeFileSync(listFilePath, jsonFile);
 }
 
@@ -52,25 +51,25 @@ function removeFromList (domain, outPort) {
 	if (fs.existsSync(listFilePath)) {
 		jsonFile = fs.readFileSync(listFilePath);
 		jsonFile = JSON.parse(jsonFile);
+		
+		// for (name in jsonFile) {
+		// 	if (name == domain && jsonFile[domain].outPort == outPort) {
+		// 	delete jsonFile[domain];
+		// 	console.log('\nDomain was deleted successfully.\n');
+		// 	}
+		// }
+		jsonFile = removeFromArray(jsonFile.domains, domain, outPort);
 
-		for (block in jsonFile) {
-			if (block[domain] == domain && block[domain].outPort == outPort) {
-				delete jsonFile.block;
-				console.log('\nDomain was deleted successfully.\n');
-				return;
-			}
-		}
-
-		jsonFile = beautifyJSON(jsonFile, null, 2, 30);
+		jsonFile = JSON.stringify(jsonFile, null, '\t');
+		fs.writeFileSync(listFilePath, jsonFile);
 	}
-	else {
-		console.log("\Domain was not in my list. Are you sure?\n")
-	}
-	fs.writeFileSync(listFilePath, jsonFile);
+	else console.log("\nNo servers were created using `up` yet.\n");
 }
 
 function readServers () {
-	return JSON.parse(fs.readFileSync(listFilePath));
+	var serversList = JSON.parse(fs.readFileSync(listFilePath));
+	if(!serversList[0]) return undefined;
+	return serversList;
 }
 
 module.exports.appendToList = appendToList;

@@ -1,9 +1,8 @@
-var validator = require('validator');
 var parseToInt = require('./parseToInt');
 var isIP = require('./isIP');
 
 // Using Validator
-var isDomain = validator.isFQDN;
+var isDomain = require('./isFQDN');
 
 function validate(domain, inPort, outPort) {
 	//

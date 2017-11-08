@@ -3,21 +3,18 @@
 // Requiring npm modules
 var program = require('commander');
 var chalk = require('chalk');
-var fs = require('fs-extra');
-var prettyjson = require('prettyjson');
+//var fs = require('fs-extra');
 
 // Requiring Actions
 var createProxyServer = require('./actions/createProxyServer');
 var createStaticServer = require('./actions/createStaticServer');
 var killServer = require('./actions/killServer');
+var listServers = require('./actions/listServers');
 
 // Requiring utils
 var validate = require('./utils/validate');
 var requirements = require('./utils/requirements');
-var appendToList = require('./utils/listFile').appendToList;
-var readServers = require('./utils/listFile').readServers;
 
-var EOL = require('os').EOL;
 // Check for requirements such as OS version and nginx install. Throw and exit if requirements not found.
 // #Roadmap: Add ability to satisfy any possible requirements.
 
@@ -52,8 +49,7 @@ program
 	.command('list')
 	.description('List all available servers.')
 	.action(function () {
-		var serversList = readServers();
-		console.log(EOL + prettyjson.render(serversList) + EOL);
+		listServers();
 	});
 
 program
