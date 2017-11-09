@@ -1,10 +1,12 @@
-var shell = require('shelljs');
-var chalk = require('chalk');
+'use strict';
+
+const shell = require('shelljs');
+const chalk = require('chalk');
 
 function requirements() {
 
 	// Detect Linux or BSD
-	var isLin = /^linux|^bsd/.test(process.platform);
+	const isLin = /^linux|^bsd/.test(process.platform);
 	
 	// Throw if OS is not Linux or BSD. This should be changed to throw if not Debian based distro. Eventually, we can add more exceptions as `up` handles more cases.
 	if(!isLin) {

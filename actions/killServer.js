@@ -1,9 +1,11 @@
-var shell = require('shelljs');
+'use strict';
 
-var npath = require('../utils/nginxPath');
-var conf = require('../utils/nginxConf');
-var nginxReload = require('../utils/nginxReload');
-var removeFromList = require('../utils/listFile').removeFromList;
+const shell = require('shelljs');
+
+const npath = require('../utils/nginxPath');
+const conf = require('../utils/nginxConf');
+const nginxReload = require('../utils/nginxReload');
+const { removeFromList } = require('../utils/listFile');
 
 function killServer(domain, outPort) {
 	shell.rm('-rf', conf(npath.enabledSites(), domain, outPort));

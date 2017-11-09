@@ -1,7 +1,9 @@
-var shell = require('shelljs');
+'use strict';
 
-var npath = require('../utils/nginxPath');
-var conf = require('../utils/nginxConf');
+const shell = require('shelljs');
+
+const npath = require('../utils/nginxPath');
+const conf = require('../utils/nginxConf');
 
 function killALL () {
 	shell.rm('-Rf', npath.serversBakUp);

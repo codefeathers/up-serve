@@ -1,8 +1,10 @@
-var parseToInt = require('./parseToInt');
-var isIP = require('./isIP');
+'use strict';
+
+const parseToInt = require('./parseToInt');
+const isIP = require('./isIP');
 
 // Using Validator
-var isDomain = require('./isFQDN');
+const isDomain = require('./isFQDN');
 
 function validate(domain, inPort, outPort) {
 	//
@@ -10,15 +12,15 @@ function validate(domain, inPort, outPort) {
 	outPort = outPort || 80;
 
 	// Error messages
-	var domainInvalidMsg = ["\nPlease use a domain name instead of an IP address.", "\nDomain is not valid. Please use a valid domain name."];
-	var portInvalidMsg = ["\nPort should be a number.", "\nPort should be a number from 1 and 65535."];
+	const domainInvalidMsg = ["\nPlease use a domain name instead of an IP address.", "\nDomain is not valid. Please use a valid domain name."];
+	const portInvalidMsg = ["\nPort should be a number.", "\nPort should be a number from 1 and 65535."];
 	
 	// ARGV returns a string as input. Port numbers should be parsed to int to validate them. If validation fails, these will return undefined and will fail the subsequent test.
-	var validInPort = parseToInt(inPort);
-	var validOutPort = parseToInt(outPort);
+	const validInPort = parseToInt(inPort);
+	const validOutPort = parseToInt(outPort);
 
 	// The value of isInvalid will be returned back. If none of the `if`s are true, the default value `true` is returned `domain`, `inPort` and `outPort` are considered validated.
-	var isValid = true;
+	let isValid = true;
 
 	// Throw if IP is given instead of domain name.
 	if (isIP(domain)) {

@@ -2,12 +2,12 @@
 
 // These functions just return paths. Later, these should be modified to poll from nginx's config.
 
-var npath = "/etc/nginx/";
-var enabled = npath + "sites-enabled/";
-var confDpath = npath + "conf.d/";
-var upPath = "/etc/up-serve/";
-var wwwRoot = upPath + "static/";
-var serverListPath = upPath + "servers";
+const npath = "/etc/nginx/";
+const enabled = npath + "sites-enabled/";
+const confDpath = npath + "conf.d/";
+const upPath = "/etc/up-serve/";
+const wwwRoot = upPath + "static/";
+const serverListPath = upPath + "servers";
 
 function nginxPath() {
 	return npath;

@@ -3,20 +3,20 @@
 'use strict';
 
 // Requiring npm modules
-var program = require('commander');
-var chalk = require('chalk');
+const program = require('commander');
+const chalk = require('chalk');
 //var fs = require('fs-extra');
 
 // Requiring Actions
-var createProxyServer = require('./actions/createProxyServer');
-var createStaticServer = require('./actions/createStaticServer');
-var killServer = require('./actions/killServer');
-var listServers = require('./actions/listServers');
-var killAllConfirm = require('./actions/killAllConfirm');
+const createProxyServer = require('./actions/createProxyServer');
+const createStaticServer = require('./actions/createStaticServer');
+const killServer = require('./actions/killServer');
+const listServers = require('./actions/listServers');
+const killAllConfirm = require('./actions/killAllConfirm');
 
 // Requiring utils
-var validate = require('./utils/validate');
-var requirements = require('./utils/requirements');
+const validate = require('./utils/validate');
+const requirements = require('./utils/requirements');
 
 // Check for requirements such as OS version and nginx install. Throw and exit if requirements not found.
 // #Roadmap: Add ability to satisfy any possible requirements.

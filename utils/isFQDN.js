@@ -3,7 +3,7 @@
 
 'use strict';
 
-var fs = require('fs-extra');
+const fs = require('fs-extra');
 
 // Official list of TLDs should be fetched from:
 // https://data.iana.org/TLD/tlds-alpha-by-domain.txt
@@ -14,7 +14,7 @@ var fs = require('fs-extra');
 function isFQDN(domain) {
 
 	// Importing and parsing `tlds.txt` file
-	var tlds = fs.readFileSync('./assets/tlds.txt', 'utf8')
+	const tlds = fs.readFileSync('./assets/tlds.txt', 'utf8')
 		.split(/[\r\n]+/)
 		.filter(x => !x.startsWith('#'));
 		
@@ -22,19 +22,19 @@ function isFQDN(domain) {
 		return false;
 	}
 
-	var labels = domain.split('.').reverse();
+	const labels = domain.split('.').reverse();
 
 	if (labels.length < 2) {
 		return false;
 	}
 
-	var tld = labels[0];
+	const [ tld ] = labels;
 
 	if (!tlds.includes(tld.toUpperCase())) {
 		return false;
 	}
 
-	for (var label of labels) {
+	for (const label of labels) {
 
 		const len = label.length;
 
@@ -56,6 +56,6 @@ function isFQDN(domain) {
 		}
 	}
 	return true;
-};
+}
 
 module.exports = isFQDN;
