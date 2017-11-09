@@ -1,6 +1,7 @@
 'use strict';
 
-// Parse an input string and return a number if it is an integer. If it's a float, string, or array, return undefined.
+// Parse an input string and return a number if it is an integer.
+// If it's a float, string, or array, return undefined.
 
 function parseToInt(inputString) {
 	const parsing = /^\d+$/.exec(inputString);

@@ -32,8 +32,11 @@ function createProxyServer(domain, inPort, outPort) {
 		"}"
 	);
 	shell.mkdir('-p', npath.confD());
-	shell.mkdir('-p', npath.enabledSites()); // Creates directories if doesn't exist
-	shell.ln('-sf', conf(npath.confD(), domain, outPort), conf(npath.enabledSites(), domain, outPort)); // Symlink the conf file from sites-available to sites-enabled
+	shell.mkdir('-p', npath.enabledSites());
+	// Creates directories if doesn't exist
+	shell.ln('-sf', conf(npath.confD(), domain, outPort),
+		conf(npath.enabledSites(), domain, outPort));
+	// Symlink the conf file from sites-available to sites-enabled
 
 	appendToList(domain, outPort, inPort);
 	nginxReload();

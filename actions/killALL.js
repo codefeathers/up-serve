@@ -15,8 +15,11 @@ function killALL () {
 	shell.mkdir('-p', npath.confD());
 	shell.mkdir('-p', npath.enabledSites());
 	shell.mkdir('-p', npath.webRoot());
-	shell.cp('./build/defaultNginx.conf', conf(npath.confD())); // Create the default.conf file
-	shell.ln('-sf', npath.confD() + "default.conf", npath.enabledSites() + "default.conf"); // Symlink the default.conf file from confD to sites-enabled	
+	shell.cp('./build/defaultNginx.conf', conf(npath.confD()));
+	// Create the default.conf file
+	shell.ln('-sf', npath.confD() + "default.conf",
+		npath.enabledSites() + "default.conf");
+	// Symlink the default.conf file from confD to sites-enabled	
 }
 
 module.exports = killALL;

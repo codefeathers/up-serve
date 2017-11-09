@@ -1,5 +1,7 @@
 'use strict';
 
+const { EOL } = require('os');
+
 const prompt = require('prompt');
 const shell = require('shelljs');
 
@@ -12,7 +14,8 @@ function killAllConfirm () {
 
 	const property = {
 		name: 'yesno',
-		message: 'This will completely destroy all configs and reset nginx. Are you sure?',
+		message: 'This will completely destroy all configs and reset nginx. ' +
+			'Are you sure?',
 		validator: /y[es]*|n[o]?/,
 		warning: 'Must respond yes or no',
 		default: 'no'
@@ -26,7 +29,8 @@ function killAllConfirm () {
 		else {
 			console.log("Deleting all servers...");
 			killAll();
-			console.log("\nDone. All configs have been destroyed. Hope you're happy.");
+			console.log(EOL +
+				"Done. All configs have been destroyed. Hope you're happy.");
 		}
 	});
 }

@@ -1,6 +1,7 @@
 'use strict';
 
-// These functions just return paths. Later, these should be modified to poll from nginx's config.
+// These functions just return paths.
+// Later, these should be modified to poll from nginx's config.
 
 const npath = "/etc/nginx/";
 const enabled = npath + "sites-enabled/";
