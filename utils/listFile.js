@@ -1,5 +1,7 @@
 'use strict';
 
+const { EOL } = require('os');
+
 const fs = require('fs-extra');
 
 const removeFromArray = require('./removeFromArray');
@@ -39,7 +41,7 @@ function removeFromList (domain, outPort) {
 		jsonFile = JSON.stringify(jsonBuffer, null, '\t');
 		fs.writeFileSync(listFilePath(), jsonFile);
 	}
-	else console.log("\nNo servers were created using `up` yet.\n");
+	else console.log(EOL + "No servers were created using `up` yet." + EOL);
 }
 
 function readServers () {
