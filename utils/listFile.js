@@ -1,8 +1,7 @@
 var fs = require('fs-extra');
 
 var removeFromArray = require('./removeFromArray');
-
-var listFilePath = "/etc/up-serve/servers.up";
+var listFilePath = require('./nginxPath').serversUp;
 
 function appendToList(domain, outPort, inPort) {
 	
@@ -20,36 +19,30 @@ function appendToList(domain, outPort, inPort) {
 		domBlock.inPort = inPort;
 	}
 
-	if (fs.existsSync(listFilePath)) {
-		var jsonBuffer = JSON.parse(fs.readFileSync(listFilePath));
+	if (fs.existsSync(listFilePath())) {
+		var jsonBuffer = JSON.parse(fs.readFileSync(listFilePath()));
 		jsonFile.domains = removeFromArray(jsonBuffer.domains, domain, outPort);
-		console.log(jsonFile);
 	}
-	console.log(jsonFile);
-	console.log(jsonFile.domains);
 	jsonFile.domains.push(domBlock);
-	console.log(jsonFile);
 	jsonFile = JSON.stringify(jsonFile, null, '\t');
-	console.log(jsonFile);
-	fs.writeFileSync(listFilePath, jsonFile);
+	fs.writeFileSync(listFilePath(), jsonFile);
 }
 
 function removeFromList (domain, outPort) {
-	var jsonFile = { "domains": [] };
-	if (fs.existsSync(listFilePath)) {
-		jsonFile = fs.readFileSync(listFilePath);
-		jsonFile = JSON.parse(jsonFile);
+	if (fs.existsSync(listFilePath())) {
+		var jsonFile = { "domains": [] };
+		var jsonBuffer = JSON.parse(fs.readFileSync(listFilePath()));
+		jsonFile.domains = removeFromArray(jsonBuffer.domains, domain, outPort);
 
-		jsonFile = removeFromArray(jsonFile.domains, domain, outPort);
-
-		jsonFile = JSON.stringify(jsonFile, null, '\t');
-		fs.writeFileSync(listFilePath, jsonFile);
+		jsonFile = JSON.stringify(jsonBuffer, null, '\t');
+		fs.writeFileSync(listFilePath(), jsonFile);
 	}
 	else console.log("\nNo servers were created using `up` yet.\n");
 }
 
 function readServers () {
-	var serversList = JSON.parse(fs.readFileSync(listFilePath));
+	var serversList = JSON.parse(fs.readFileSync(listFilePath()));
+
 	if(!serversList.domains[0]) return undefined;
 	return serversList;
 }

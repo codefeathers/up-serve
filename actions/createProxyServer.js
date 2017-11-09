@@ -9,6 +9,9 @@ var appendToList = require('../utils/listFile').appendToList;
 var EOL = require('os').EOL; // \n if used on Linux, \r\n if used on Windows.
 
 function createProxyServer(domain, inPort, outPort) {
+	outPort = outPort || 80;
+	shell.mkdir('-p', npath.confD());
+
 	fs.outputFileSync((conf(npath.confD(), domain, outPort)),
 		"server {" + EOL +
 		"	listen " + outPort + ";" + EOL +
@@ -26,7 +29,8 @@ function createProxyServer(domain, inPort, outPort) {
 		"	}" + EOL +
 		"}"
 	);
-	shell.mkdir('-p', npath.enabledSites()); // Creates directory if doesn't exist
+	shell.mkdir('-p', npath.confD());
+	shell.mkdir('-p', npath.enabledSites()); // Creates directories if doesn't exist
 	shell.ln('-sf', conf(npath.confD(), domain, outPort), conf(npath.enabledSites(), domain, outPort)); // Symlink the conf file from sites-available to sites-enabled
 
 	appendToList(domain, outPort, inPort);

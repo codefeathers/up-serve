@@ -1,5 +1,7 @@
 #!/usr/bin/env node
 
+'use strict';
+
 // Requiring npm modules
 var program = require('commander');
 var chalk = require('chalk');
@@ -10,6 +12,7 @@ var createProxyServer = require('./actions/createProxyServer');
 var createStaticServer = require('./actions/createStaticServer');
 var killServer = require('./actions/killServer');
 var listServers = require('./actions/listServers');
+var killALL = require('./actions/killALL');
 
 // Requiring utils
 var validate = require('./utils/validate');
@@ -59,6 +62,16 @@ program
 		outPort = outPort || "80"; // This is a string because regex needs to validate it.
 		killServer(domain, outPort);
 		console.log("\nDone! Your server has been killed!\n");
+	});
+
+program
+	.command('kill-all')
+	.description('Warning! Will completely kill all servers and reset nginx')
+	.action(function() {
+		killALL();
+		console.log("\nAll servers have been killed.\n" +
+		"A backup of your old servers.up is saved in /etc/up-serve/servers.bak.up.\n" +
+		"Check this if you need to.\n");
 	});
 
 program
