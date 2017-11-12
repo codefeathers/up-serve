@@ -1,7 +1,11 @@
-function removeFromArray (arr, dom, port) {
-	var shouldDelete = [];
+'use strict';
 
-	for(var i = 0; i < arr.length; i++) if((arr[i].domain == dom) && (arr[i].outPort == port)) shouldDelete = [true, i];
+function removeFromArray (arr, dom, port) {
+	let shouldDelete = [];
+
+	for(let i = 0; i < arr.length; i++)
+		if((arr[i].domain == dom) && (arr[i].outPort == port))
+			shouldDelete = [true, i];
 
 	if (shouldDelete[0]) {
 		arr.splice(shouldDelete[1], 1);

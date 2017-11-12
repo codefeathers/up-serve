@@ -1,12 +1,16 @@
-var readServers = require('../utils/listFile').readServers;
-var prettyjson = require('prettyjson');
+'use strict';
 
-var EOL = require('os').EOL;
+const { readServers } = require('../utils/listFile');
+const prettyjson = require('prettyjson');
+
+const { EOL } = require('os');
 
 function listServers() {
-	var serversList = readServers();
+	const serversList = readServers();
 	if(serversList) console.log(EOL + prettyjson.render(serversList) + EOL);
-	else console.log("\nNo servers were found! Create some using `up`!\n");
+	else console.log(EOL +
+		"No servers were found! Create some using `up`!" +
+		EOL);
 }
 
 module.exports = listServers;

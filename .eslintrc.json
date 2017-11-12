@@ -18,6 +18,11 @@
 			"error",
 			"always"
 		],
-		"prefer-const": "error"
+		"prefer-const": "error",
+		"prefer-destructuring": "error",
+		"no-var": "error",
+		"strict": "error",
+		"eol-last": "error",
+		"max-len": "error"
 	}
 }

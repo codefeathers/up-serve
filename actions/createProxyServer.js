@@ -1,12 +1,14 @@
-var fs = require('fs-extra');
-var shell = require('shelljs');
+'use strict';
 
-var npath = require('../utils/nginxPath');
-var conf = require('../utils/nginxConf');
-var nginxReload = require('../utils/nginxReload');
-var appendToList = require('../utils/listFile').appendToList;
+const fs = require('fs-extra');
+const shell = require('shelljs');
 
-var EOL = require('os').EOL; // \n if used on Linux, \r\n if used on Windows.
+const npath = require('../utils/nginxPath');
+const conf = require('../utils/nginxConf');
+const nginxReload = require('../utils/nginxReload');
+const { appendToList } = require('../utils/listFile');
+
+const { EOL } = require('os'); // \n if used on Linux, \r\n if used on Windows.
 
 function createProxyServer(domain, inPort, outPort) {
 	outPort = outPort || 80;
@@ -30,8 +32,11 @@ function createProxyServer(domain, inPort, outPort) {
 		"}"
 	);
 	shell.mkdir('-p', npath.confD());
-	shell.mkdir('-p', npath.enabledSites()); // Creates directories if doesn't exist
-	shell.ln('-sf', conf(npath.confD(), domain, outPort), conf(npath.enabledSites(), domain, outPort)); // Symlink the conf file from sites-available to sites-enabled
+	shell.mkdir('-p', npath.enabledSites());
+	// Creates directories if doesn't exist
+	shell.ln('-sf', conf(npath.confD(), domain, outPort),
+		conf(npath.enabledSites(), domain, outPort));
+	// Symlink the conf file from sites-available to sites-enabled
 
 	appendToList(domain, outPort, inPort);
 	nginxReload();
