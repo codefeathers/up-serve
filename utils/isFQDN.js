@@ -4,6 +4,7 @@
 'use strict';
 
 const fs = require('fs-extra');
+const path = require('path');
 
 // Official list of TLDs should be fetched from:
 // https://data.iana.org/TLD/tlds-alpha-by-domain.txt
@@ -14,7 +15,8 @@ const fs = require('fs-extra');
 function isFQDN(domain) {
 
 	// Importing and parsing `tlds.txt` file
-	const tlds = fs.readFileSync('./assets/tlds.txt', 'utf8')
+	const tldspath = path.join(__dirname, '/../assets/tlds.txt');
+	const tlds = fs.readFileSync(tldspath, 'utf8')
 		.split(/[\r\n]+/)
 		.filter(x => !x.startsWith('#'));
 		

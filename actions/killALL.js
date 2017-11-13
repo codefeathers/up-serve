@@ -22,4 +22,9 @@ function killALL () {
 	// Symlink the default.conf file from confD to sites-enabled	
 }
 
-module.exports = killALL;
+function noKill () {
+	console.log("\nkill-all was interrupted by user.");
+}
+
+module.exports.kill = killALL;
+module.exports.noKill = noKill;

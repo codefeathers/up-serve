@@ -1,36 +1,19 @@
 'use strict';
 
-const { EOL } = require('os');
+const readline = require('readline');
+const killALL = require('./killALL').kill;
+const noKill = require('./killALL').noKill;
 
-const prompt = require('prompt');
-const shell = require('shelljs');
+function killAllConfirm() {
+	console.log("\nThis action will destroy all nginx servers and return to default configuration.\nAre you sure you want to do this?" + "\nConfirm y[es] / n[o]:");
+	const rl = readline.createInterface({ input: process.stdin });
 
-const killAll = require('./killALL');
+	const line = () => new Promise(resolve => rl.once('line', resolve));
 
-function killAllConfirm () {
-	// Start the prompt
-
-	prompt.start();
-
-	const property = {
-		name: 'yesno',
-		message: 'This will completely destroy all configs and reset nginx. ' +
-			'Are you sure?',
-		validator: /y[es]*|n[o]?/,
-		warning: 'Must respond yes or no',
-		default: 'no'
-	};
-
-	prompt.get(property, function (err, res) {
-		if(res.yesno == "no") {
-			console.log("Aborted!");
-			shell.exit(0);
-		}
-		else {
-			console.log("Deleting all servers...");
-			killAll();
-			console.log(EOL +
-				"Done. All configs have been destroyed. Hope you're happy.");
+	line().then(line => {
+		line.trim();
+		if((/^(y(es)?|n(o)?)$/).test(line)) {
+			line == "y" || "yes" ? killALL() : noKill();
 		}
 	});
 }

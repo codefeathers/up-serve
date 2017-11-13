@@ -90,6 +90,7 @@ program
 	.command('kill-all')
 	.description('Warning! Will completely kill all servers and reset nginx')
 	.action(function() {
+		//new Promise(resolve => killed\killAllConfirm();
 		killAllConfirm();
 		console.log(EOL + [
 			"A backup of your old servers.up is " +
