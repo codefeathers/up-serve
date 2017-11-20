@@ -1,6 +1,7 @@
 'use strict';
 
 const shell = require('shelljs');
+const path = require('path');
 
 const { EOL } = require('os');
 
@@ -17,7 +18,9 @@ function killALL () {
 	shell.mkdir('-p', npath.confD());
 	shell.mkdir('-p', npath.enabledSites());
 	shell.mkdir('-p', npath.webRoot());
-	shell.cp('./build/defaultNginx.conf', conf(npath.confD()));
+	console.log(conf(npath.confD()));
+	shell.cp((path.join(__dirname, '/../build/defaultNginx.conf')),
+		conf(npath.confD()));
 	// Create the default.conf file
 	shell.ln('-sf', npath.confD() + "default.conf",
 		npath.enabledSites() + "default.conf");
@@ -31,7 +34,7 @@ function killALL () {
 }
 
 function noKill () {
-	console.log("\nkill-all was interrupted by user.");
+	console.log(EOL + "kill-all was interrupted by user.");
 }
 
 module.exports.kill = killALL;
