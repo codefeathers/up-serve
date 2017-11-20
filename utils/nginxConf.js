@@ -4,9 +4,10 @@
 // concatenates them with ".conf" and returns it.
 
 function conf(path, domain, outPort) {
-	domain = domain || "";
+	domain = domain || "default";
 	outPort = outPort || "";
-	return (path + domain + "." + outPort + ".conf");
+	if (outPort != "") outPort = "." + outPort;
+	return (path + domain + outPort + ".conf");
 }
 
 module.exports = conf;

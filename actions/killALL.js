@@ -18,7 +18,6 @@ function killALL () {
 	shell.mkdir('-p', npath.confD());
 	shell.mkdir('-p', npath.enabledSites());
 	shell.mkdir('-p', npath.webRoot());
-	console.log(conf(npath.confD()));
 	shell.cp((path.join(__dirname, '/../build/defaultNginx.conf')),
 		conf(npath.confD()));
 	// Create the default.conf file
