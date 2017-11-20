@@ -8,7 +8,7 @@
 
 # up
 
-> Current version: `up v.0.2.0 (Alpha)`
+> Current version: `up v.0.2.1 (Alpha)`
 
 > Notes: `up` is now in Alpha! 🎉 [(Changelog)](Changelog.md)\
 > ⚠️ ❌ `up` is pretty useable so far. If you're testing `up` on a development server, do give us feedback.
