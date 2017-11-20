@@ -33,6 +33,7 @@
 		"fs-extra": "^4.0.2",
 		"prettyjson": "^1.2.1",
 		"prompt": "^1.0.0",
+		"readline-sync": "^1.4.7",
 		"shelljs": "^0.7.8"
 	},
 	"devDependencies": {

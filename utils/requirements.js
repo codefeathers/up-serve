@@ -22,6 +22,12 @@ function requirements() {
 			" if you want `up` to be ported for your distro");
 		shell.exit(1);
 	}
+
+	// Check if sudo
+	if (process.getuid() != 0) {
+		console.log("`up` requires root privileges to work. Please use `sudo up <command>`");
+		shell.exit(1);
+	}
 	
 	// Throw if Nginx is not found
 	if (!shell.which('nginx')) {
@@ -29,7 +35,6 @@ function requirements() {
 			'I need nginx to work. Install nginx first. https://nginx.org/');
 		shell.exit(1);
 	}
-
 }
 
 module.exports = requirements;
