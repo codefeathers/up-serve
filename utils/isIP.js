@@ -1,14 +1,16 @@
+'use strict';
+
 // Parses a string, and returns true if it is an IP Address.
 
 function isIP(str) {
-	var segments = str
+	const segments = str
 		.split(".")
 		.map(Number);
 	if (!segments.length === 4) {
 		return false;
 	}
-	for(var i = 0; i < segments.length; i++) {
-		var segment = segments[i];
+	for(let i = 0; i < segments.length; i++) {
+		const segment = segments[i];
 		if (Number.isNaN(segment)) {
 			return false;
 		}

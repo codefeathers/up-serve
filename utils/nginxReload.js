@@ -1,4 +1,6 @@
-var execSync = require('child_process').execSync;
+'use strict';
+
+const { execSync } = require('child_process');
 
 function nginxReload() {
 	execSync('service nginx reload', function (error, stdout, stderr) {

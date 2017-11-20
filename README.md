@@ -8,17 +8,17 @@
 
 # up
 
-> Current version: `up v.0.1.5 (Pre-Alpha)`
+> Current version: `up v.0.2.0 (Alpha)`
 
-> Notes: `up` has landed in pre-alpha! 🎉 Changelog will be added from `up v.0.2.0` [(Alpha/MVP)](Roadmap.md)\
-> ⚠️ ❌ `up` is still not ready for use yet! Do not attempt to use this in development or production until alpha!
+> Notes: `up` is now in Alpha! 🎉 [(Changelog)](Changelog.md)\
+> ⚠️ ❌ `up` is pretty useable so far. If you're testing `up` on a development server, do give us feedback.
 
 **`up`** is a command line application that creates nginx server blocks quickly with a single command.
 
 
 ## Installation
 
-As of now, `up` only supports Debian and Ubuntu based distros. Support for more distros will come soon. Add an issue to bump this process.
+`up` currently supports nginx mainline and nginx stable on Linux based distros. Support for more distros will come soon. Add an issue to bump this process. 
 
 You will need to have [_node JS_](https://nodejs.org) and [_nginx_](https://nginx.org) installed.
 
@@ -28,23 +28,20 @@ Install `up` from npm:
 
 > `up` is now available as a command.
 
-## Commands
+## Basic Commands
 
-`up static <domain>` - Create new static server at current folder.
+Format: `up command <required> [optional]`
 
-`up proxy <domain> <port>` - Create new proxy server listening at said port.
-
-`up list` - List currently available servers. (Doesn't work yet)
-
-`up kill <domain>` - Kill the server for this domain.
+- `up static <domain> [outbound port]` - Create new static server at current folder.
+- `up proxy <domain> <inbound port> [outbound port]` - Create new proxy server listening at said port.
+- `up list` - List currently available servers.
+- `up kill <domain>` - Kill the server for this domain.
 
 ## Examples
 
-`up static example.com` will serve a static website from current folder.
-
-`up proxy example.com 8081` will create a reverse proxy listening at port 8081.
-
-`up kill example.com`
+- `up static example.com` will serve a static website from current folder.
+- `up proxy example.com 8081` will create a reverse proxy listening at port 8081.
+- `up kill example.com`
 
 ## Contributors, Collaborators, and Guides
 
