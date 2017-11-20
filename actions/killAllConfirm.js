@@ -1,21 +1,18 @@
 'use strict';
 
-const readline = require('readline');
+const readlineSync = require('readline-sync');
 const killALL = require('./killALL').kill;
-const noKill = require('./killALL').noKill;
+const { noKill } = require('./killALL');
 
 function killAllConfirm() {
-	console.log("\nThis action will destroy all nginx servers and return to default configuration.\nAre you sure you want to do this?" + "\nConfirm y[es] / n[o]:");
-	const rl = readline.createInterface({ input: process.stdin });
-
-	const line = () => new Promise(resolve => rl.once('line', resolve));
-
-	line().then(line => {
-		line.trim();
-		if((/^(y(es)?|n(o)?)$/).test(line)) {
-			line == "y" || "yes" ? killALL() : noKill();
-		}
-	});
+	console.log("\nThis action will destroy all nginx servers and return "
+		+ "to default configuration.");
+	if (readlineSync.keyInYN("Are you sure you want to do this?")) {
+		killALL();
+	}
+	else {
+		noKill();
+	}
 }
 
 module.exports = killAllConfirm;

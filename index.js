@@ -92,11 +92,6 @@ program
 	.action(function() {
 		//new Promise(resolve => killed\killAllConfirm();
 		killAllConfirm();
-		console.log(EOL + [
-			"A backup of your old servers.up is " +
-				"saved in /etc/up-serve/servers.bak.up.",
-			"Check this if you need to."
-		].join(EOL) + EOL);
 	});
 
 program
