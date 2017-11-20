@@ -28,7 +28,7 @@ requirements(); // Comment in development and uncomment this line in production.
 // This should check whether the OS is compatible with this version of `up`
 
 program
-	.version('0.1.5');
+	.version('0.2.0');
 
 program
 	.command('static <domain> [outPort]')

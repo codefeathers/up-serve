@@ -8,10 +8,10 @@
 
 # up
 
-> Current version: `up v.0.1.9 (Pre-Alpha)`
+> Current version: `up v.0.2.0 (Alpha)`
 
-> Notes: `up` has reached MVP! 🎉 Changelog will be added from alpha version: `up v.0.2.0` [(Roadmap)](Roadmap.md)\
-> ⚠️ ❌ `up` is still not ready for use yet! Do not attempt to use this in development or production until alpha!
+> Notes: `up` is now in Alpha! 🎉 [(Changelog)](Changelog.md)\
+> ⚠️ ❌ `up` is pretty useable so far. If you're testing `up` on a development server, do give us feedback.
 
 **`up`** is a command line application that creates nginx server blocks quickly with a single command.
 
