@@ -45,9 +45,14 @@ function removeFromList (domain, outPort) {
 }
 
 function readServers () {
-	const serversList = JSON.parse(fs.readFileSync(listFilePath()));
-
-	if(!serversList.domains[0]) return undefined;
+	let serversList;
+	if (fs.existsSync(listFilePath())) {
+		serversList = JSON.parse(fs.readFileSync(listFilePath()));
+		if(!serversList.domains[0]) return undefined;
+	}
+	else {
+		return "Servers were not created";
+	}
 	return serversList;
 }
 

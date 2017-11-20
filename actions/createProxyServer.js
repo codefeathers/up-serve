@@ -31,7 +31,7 @@ function createProxyServer(domain, inPort, outPort) {
 		"	}" + EOL +
 		"}"
 	);
-	shell.mkdir('-p', npath.confD());
+	
 	shell.mkdir('-p', npath.enabledSites());
 	// Creates directories if doesn't exist
 	shell.ln('-sf', conf(npath.confD(), domain, outPort),

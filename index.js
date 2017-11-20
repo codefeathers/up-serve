@@ -7,7 +7,6 @@ const { EOL } = require('os');
 // Requiring npm modules
 const program = require('commander');
 const chalk = require('chalk');
-//var fs = require('fs-extra');
 
 // Requiring Actions
 const createProxyServer = require('./actions/createProxyServer');
@@ -28,7 +27,16 @@ requirements(); // Comment in development and uncomment this line in production.
 // This should check whether the OS is compatible with this version of `up`
 
 program
-	.version('0.2.0');
+	.version('0.2.1');
+	
+let cmdValue;
+
+program
+	.version('0.1.0')
+	.arguments('<cmd>')
+	.action(function (cmd) {
+		cmdValue = cmd;
+	});
 
 program
 	.command('static <domain> [outPort]')
@@ -65,8 +73,7 @@ program
 			"Done! Your reverse proxy server has been set up!",
 			"Point your domain to this server and check " +
 				chalk.cyan(domain) +
-				" to verify!"
-		].join(EOL));
+				" to verify!"].join(EOL));
 	});
 
 program
@@ -90,9 +97,9 @@ program
 	.command('kill-all')
 	.description('Warning! Will completely kill all servers and reset nginx')
 	.action(function() {
-		//new Promise(resolve => killed\killAllConfirm();
 		killAllConfirm();
 	});
+
 
 program
 	.command('*') // This should pick invalid commands, but it doesn't, yet.
@@ -122,3 +129,8 @@ program.on('--help', function () {
 
 // Parses commands passed to `up` and chooses one of the above commands.
 program.parse(process.argv);
+
+if (typeof cmdValue === 'undefined') {
+	console.log(EOL + "No command was given. `up --help` for help info.");
+	process.exit(1);
+}
