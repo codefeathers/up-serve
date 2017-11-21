@@ -10,7 +10,7 @@
 
 > Current version: `up v.0.2.1 (Alpha)`
 
-> Notes: `up` is now in Alpha! 🎉 [(Changelog)](Changelog.md)\
+> Notes: `up` is now in Alpha! 🎉 [(Changelog)](/docs/Changelog.md)\
 > ⚠️ ❌ `up` is pretty useable so far. If you're testing `up` on a development server, do give us feedback.
 
 **`up`** is a command line application that creates nginx server blocks quickly with a single command.
@@ -43,12 +43,10 @@ Format: `up command <required> [optional]`
 - `up proxy example.com 8081` will create a reverse proxy listening at port 8081.
 - `up kill example.com`
 
-## Contributors, Collaborators, and Guides
+---
 
-Plenty of people gave their time guiding me and shaping this tool.
+<h4 align="center"><a href="/docs/Roadmap.MD">Roadmap</a></h4>
 
-I'd like to thank and give credit to [The Devs Community](https://thedevs.network), who are the primary reason this exists.
+<h4 align="center"><a href="Contributing.MD">Contribution Guidelines</a></h4>
 
-I'd also personally thank the following amazing people for their valuable support and feedback: **Pouria Ezzati, Thomas Rory Gummerson, Omar Khalil, Martin, GingerPlusPlus, Faizan Akram.**
-
-And the following people for their moral support and listening to my constant bickering: **David (The Humanoid), Иброхеем,  Simon 'SitiSchu' Schürrle.**
+<h4 align="center"><a href="/docs/Contributors.md">Contributors, Collaborators, and Guides</a></h4>
