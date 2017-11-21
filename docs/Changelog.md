@@ -1,8 +1,10 @@
 # Changelog / Version history
 
-## `up` v. 0.2.0
+## `up` v. 0.2.1
 
-Changelog:
+- Bug fix and patch for `up kill-all` breaking unexpectedly due to undefined default config file.
+
+## `up` v. 0.2.0
 
 - Under the hood BREAKING changes. Working directories change.
    - `/var/www/` to `/etc/up-serve/static/`
