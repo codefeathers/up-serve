@@ -14,15 +14,15 @@ Contributing to a project on Github is pretty straight forward. If this is you'r
 
 - Fork this repo.
 
-And that's it! Read the code available and change the part you don't like! You're change should not break the existing code and should pass the tests. We recommend using VS Code while working on this project.
+And that's it! Read the code available and change the part you don't like! Your change should not break any existing functionality and should work as promised. If you're having trouble with it, mention it. We recommend using VS Code while working on this project.
 
-If you're adding a new functionality, start from the branch master. It would be a better practice to create a new branch and work in there.
+If you're adding a new functionality, start from the branch develop. It would be a better practice to create a new branch and work in there.
 
 When you're done, submit a pull request and for one of the maintainers to check it out. We would let you know if there is any problem or any changes that should be considered.
 
 ### Tests
 
-We haven't written tests yet and you can manually try commands and assure the stability of the code. If you're adding a new test please write documentation for it by creating Tests.MD.
+We haven't written tests yet and you can manually try commands and assure the stability of the code. If you're adding a new test please write documentation for it by creating /docs/Tests.MD.
 
 ### Documentation
 
