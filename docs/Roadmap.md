@@ -13,14 +13,14 @@ This living document details our plans for `up`. If you would like to request fe
   - [x] `up kill` MUST work.
 - [x]List servers option.
   - [x] `up list` MUST provide list of servers running from `/etc/up-serve/servers.up` file.
-- [x] `up static` MUST have an option to specify path to root. Example: `up static example.com ./public`.
+- [ ] `up static` MUST have an option to specify path to root. Example: `up static example.com ./public`.
 - [ ] `up static` and `up proxy` MAY take a Git URL to deploy. Example:
   1. `up static example.com --git https://github.com/h5bp/html5-boilerplate /html`
   2. `up proxy example.com 5000 --git https://github.com/heroku/node-js-sample`
 - [ ] Option for HTTPS.
   - [ ] MUST add a `-s` or `--secure` flag to enable automatic HTTPS config with HTTP/2 enabled by default.
     - [ ] HSTS MAY be enabled with a `-s -h`, `-sh`, `-secure -hsts` or `--secure-hsts` flag. Will warn user to be sure of what they are doing.
-  - [ ] MAY add a `-c` flag to use `certbot` to automatically generate certificates using letsencrypt.
+  - [ ] MAY add a `-c` flag to use `certbot` or `acme.sh` to automatically generate certificates using letsencrypt.
 - [ ] MAY make `up` work on Windows.
 
 Want more features or prioritize something? Raise an [issue!](https://github.com/codefeathers/up-serve/issues)
