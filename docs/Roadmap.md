@@ -11,7 +11,7 @@ This living document details our plans for `up`. If you would like to request fe
 - [x] MVP - Minimum Viable Product.
   - [x] `up static` and `up proxy` MUST work.
   - [x] `up kill` MUST work.
-- [x]List servers option.
+- [x] List servers option.
   - [x] `up list` MUST provide list of servers running from `/etc/up-serve/servers.up` file.
 - [ ] `up static` MUST have an option to specify path to root. Example: `up static example.com ./public`.
 - [ ] `up static` and `up proxy` MAY take a Git URL to deploy. Example:
