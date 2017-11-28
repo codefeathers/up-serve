@@ -110,21 +110,22 @@ program
 
 // Adds custom help text to the automatically generated help.
 program.on('--help', function () {
-	console.log('');
-	console.log('  Usage:');
-	console.log('');
-	console.log('   ',
-		chalk.yellow('$ up'),
-		chalk.cyan('static'),
-		chalk.blue('domain-name'));
-	console.log('      Set up a static server at domain-name');
-	console.log('');
-	console.log('   ',
-		chalk.yellow('$ up'),
-		chalk.cyan('proxy'),
-		chalk.blue('domain-name port-number'));
-	console.log('      Set up a proxy server listening at port-number');
-	console.log('');
+	console.log(EOL
+			+ '  Usage:'
+			+ EOL
+			+ EOL +
+			+ '   ' + chalk.yellow('$ up') + chalk.cyan('static')
+			+ chalk.blue('[domain-name]')
+			+ EOL
+			+ '      Set up a static server at domain-name'
+			+ EOL
+			+ EOL
+			+ '   ' + chalk.yellow('$ up')
+			+ chalk.cyan('proxy')
+			+ chalk.blue('[domain-name] <port-number>')
+			+ EOL
+			+ '      Set up a proxy server listening at port-number'
+			+ EOL);
 });
 
 // Parses commands passed to `up` and chooses one of the above commands.
