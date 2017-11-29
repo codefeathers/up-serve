@@ -8,15 +8,10 @@ const { EOL } = require('os');
 const program = require('commander');
 const chalk = require('chalk');
 
-// Requiring Actions
-const createProxyServer = require('./actions/createProxyServer');
-const createStaticServer = require('./actions/createStaticServer');
-const killServer = require('./actions/killServer');
-const listServers = require('./actions/listServers');
-const killAllConfirm = require('./actions/killAllConfirm');
+// Require API
+const up = require('./api');
 
 // Requiring utils
-const validate = require('./utils/validate');
 const requirements = require('./utils/requirements');
 
 // Check for requirements such as OS version and nginx install.
@@ -39,62 +34,35 @@ program
 	.command('static <domain> [outPort]')
 	.description('Create a static server at this folder.')
 	.action(function (domain, outPort) {
-		// If outport is not given, 80 is set as default.
-		// Later, change this default to reflect nginx's settings.
-		outPort = outPort || "80";
-		// This is a string because regex needs to validate it.
-		if (!validate(domain, outPort)) return;
-		// Validates domain and outport, and if invalid, throws and returns.
-		createStaticServer(domain, outPort);
-		if (outPort != "80" || "443") domain = domain + ":" + outPort;
-		console.log(EOL + [
-			"Done! Your static server has been set up!",
-			"Point your domain to this server and check " +
-				chalk.cyan(domain) +
-				" to verify!"
-		].join(EOL));
+		up.server(domain, outPort);
 	});
 
 program
 	.command('proxy <domain> <inPort> [outPort]')
 	.description('Create a proxy server, listening at port number.')
 	.action(function (domain, inPort, outPort) {
-		// Inbound port is necessary, but outbound is set to 80 by default.
-		// Again, will change this to reflect nginx's settings.
-		outPort = outPort || "80";
-		// This is a string because regex needs to validate it.
-		if (!validate(domain, inPort, outPort)) return;
-		createProxyServer(domain, inPort, outPort);
-		if (outPort != "80" || "443") domain = domain + ":" + outPort;
-		console.log(EOL + [
-			"Done! Your reverse proxy server has been set up!",
-			"Point your domain to this server and check " +
-				chalk.cyan(domain) +
-				" to verify!"].join(EOL));
+		up.proxy(domain, inPort, outPort);
 	});
 
 program
 	.command('list')
 	.description('List all available servers.')
 	.action(function () {
-		listServers();
+		up.list();
 	});
 
 program
 	.command('kill <domain> [ourPort]')
 	.description('Kill a server.')
 	.action(function (domain, outPort) {
-		outPort = outPort || "80";
-		// This is a string because regex needs to validate it.
-		killServer(domain, outPort);
-		console.log(EOL + "Done! Your server has been killed!"+ EOL);
+		up.kill(domain, outPort);
 	});
 
 program
 	.command('kill-all')
 	.description('Warning! Will completely kill all servers and reset nginx')
 	.action(function() {
-		killAllConfirm();
+		up.reset();
 	});
 
 
