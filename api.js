@@ -18,7 +18,7 @@ const validate = require('./utils/validate');
 function server (domain, outPort) {
 	// If outport is not given, 80 is set as default.
 	// Later, change this default to reflect nginx's settings.
-	outPort = outPort || "80";
+	outPort = String(outPort) || "80";
 	// This is a string because regex needs to validate it.
 	if (!validate(domain, outPort)) return;
 	// Validates domain and outport, and if invalid, throws and returns.
@@ -35,7 +35,8 @@ function server (domain, outPort) {
 function proxy (domain, inPort, outPort) {
 	// Inbound port is necessary, but outbound is set to 80 by default.
 	// Again, will change this to reflect nginx's settings.
-	outPort = outPort || "80";
+	outPort = String(outPort) || "80";
+	inPort = String(inPort);
 	// This is a string because regex needs to validate it.
 	if (!validate(domain, inPort, outPort)) return;
 	createProxyServer(domain, inPort, outPort);
@@ -52,7 +53,7 @@ function list () {
 }
 
 function kill (domain, outPort) {
-	outPort = outPort || "80";
+	outPort = String(outPort) || "80";
 	// This is a string because regex needs to validate it.
 	killServer(domain, outPort);
 	console.log(EOL + "Done! Your server has been killed!"+ EOL);

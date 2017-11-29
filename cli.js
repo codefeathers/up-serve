@@ -26,55 +26,43 @@ let cmdValue;
 program
 	.version('0.2.1')
 	.arguments('<cmd>')
-	.action(function (cmd) {
-		cmdValue = cmd;
-	});
+	.action((cmd) => cmdValue = cmd);
 
 program
 	.command('static <domain> [outPort]')
 	.description('Create a static server at this folder.')
-	.action(function (domain, outPort) {
-		up.server(domain, outPort);
-	});
+	.action((domain, outPort) => up.server(domain, outPort));
 
 program
 	.command('proxy <domain> <inPort> [outPort]')
 	.description('Create a proxy server, listening at port number.')
-	.action(function (domain, inPort, outPort) {
-		up.proxy(domain, inPort, outPort);
-	});
+	.action((domain, inPort, outPort) => up.proxy(domain, inPort, outPort));
 
 program
 	.command('list')
 	.description('List all available servers.')
-	.action(function () {
-		up.list();
-	});
+	.action(() => up.list());
 
 program
 	.command('kill <domain> [ourPort]')
 	.description('Kill a server.')
-	.action(function (domain, outPort) {
-		up.kill(domain, outPort);
-	});
+	.action((domain, outPort) => up.kill(domain, outPort));
 
 program
 	.command('kill-all')
 	.description('Warning! Will completely kill all servers and reset nginx')
-	.action(function() {
-		up.reset();
-	});
+	.action(() => up.reset());
 
 
 program
 	.command('*') // This should pick invalid commands, but it doesn't, yet.
-	.action(function () {
+	.action(() => {
 		console.log(EOL + "Invalid command. Type " +
 			chalk.cyan('up --help') + " for help." + EOL);
 	});
 
 // Adds custom help text to the automatically generated help.
-program.on('--help', function () {
+program.on('--help', () => {
 	console.log(EOL
 			+ '  Usage:'
 			+ EOL
