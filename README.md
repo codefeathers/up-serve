@@ -8,10 +8,10 @@
 
 # up
 
-> Current version: `up v.0.2.1 (Alpha)`
+> Current version: `up v.0.2.5 (Alpha)`
 
 > Notes: `up` is now in Alpha! 🎉 [(Changelog)](/docs/Changelog.md)\
-> ⚠️ ❌ `up` is pretty useable so far. If you're testing `up` on a development server, do give us feedback.
+> ⚠️ `up` is pretty useable so far. If you're testing `up` on a development server, do give us feedback.
 
 **`up`** is a command line application that creates nginx server blocks quickly with a single command.
 
@@ -32,7 +32,8 @@ Install `up` from npm:
 
 Format: `up command <required> [optional]`
 
-- `up static <domain> [outbound port]` - Create new static server at current folder.
+- `up serve <domain> [outbound port]` - Create new static server at current folder.
+	- `up static` is deprecated from `v. 0.2.5` (see [changelog](/docs/CHANGELOG.md))
 - `up proxy <domain> <inbound port> [outbound port]` - Create new proxy server listening at said port.
 - `up list` - List currently available servers.
 - `up kill <domain>` - Kill the server for this domain.
@@ -41,9 +42,28 @@ Format: `up command <required> [optional]`
 
 - `up static example.com` will serve a static website from current folder.
 - `up proxy example.com 8081` will create a reverse proxy listening at port 8081.
-- `up kill example.com`
+- `up kill example.com` will kill the server named example.com.
+- `up list` will fetch a list of servers created with `up`.
+
+## API
+
+```JavaScript
+const up = require('up-serve')
+
+console.log(up.version()) // up v. 0.2.5
+
+let result = up.server("example.com", "path/to/project", "80")
+console.log(result) // Will log success or throw if error
+
+let result = up.kill("example.com", "80")
+console.log(result) // Will log success or throw if error
+```
+
+More detailed API documentation coming soon.
 
 ---
+
+<h2 align="center">Meta</h2>
 
 <h4 align="center"><a href="/docs/Roadmap.MD">Roadmap</a></h4>
 

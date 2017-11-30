@@ -3,6 +3,7 @@
 'use strict';
 
 const { EOL } = require('os');
+const path = require('path');
 
 // Requiring npm modules
 const program = require('commander');
@@ -15,11 +16,19 @@ const killAllConfirm = require('./actions/killAllConfirm');
 // Requiring utils
 const requirements = require('./utils/requirements');
 
+const currentPath = path.normalize(process.cwd());
+let cmdValue = '';
+
 // Check for requirements such as OS version and nginx install.
 // #Roadmap: Add ability to satisfy any possible requirements.
 
 requirements();
 // Comment in development and uncomment this line in production.
+
+program
+	.version(up.version())
+	.arguments('<cmd>')
+	.action((cmd) => cmdValue = cmd);
 
 const tryCatch = ((test, name) => {
 	try {
@@ -32,19 +41,21 @@ const tryCatch = ((test, name) => {
 	}
 });
 
-let cmdValue = '';
-
 program
-	.version('0.2.5')
-	.arguments('<cmd>')
-	.action((cmd) => cmdValue = cmd);
-
-program
-	.command('static <domain> [outPort]')
-	.description('Create a static server at this folder.')
+	.command('serve <domain> [outPort]')
+	.description('Create a server at this folder.')
 	.action((domain, outPort) =>
 		tryCatch(
-			() => up.server(domain, outPort),
+			() => up.server(domain, currentPath, outPort),
+			'new-server'
+		));
+		
+program
+	.command('static <domain> [outPort]')
+	.description('DEPRECATED! Create a static server at this folder.')
+	.action((domain, outPort) =>
+		tryCatch(
+			() => up.server(domain, currentPath, outPort),
 			'new-server'
 		));
 

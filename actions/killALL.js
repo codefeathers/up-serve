@@ -2,7 +2,6 @@
 
 const shell = require('shelljs');
 const path = require('path');
-const fs = require('fs');
 
 const { EOL } = require('os');
 

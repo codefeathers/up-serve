@@ -1,6 +1,6 @@
 {
 	"name": "up-serve",
-	"version": "0.2.1",
+	"version": "0.2.5",
 	"description": "A cli tool to quickly create and manage nginx server blocks.",
 	"main": "lib.js",
 	"scripts": {
@@ -20,6 +20,9 @@
 	],
 	"bin": {
 		"up": "./cli.js"
+	},
+	"pkg": {
+		"assets": "assets/*"
 	},
 	"author": "Muthu Kumar (@MKRhere)",
 	"license": "MIT",

@@ -6,20 +6,26 @@ const { EOL } = require('os');
 const chalk = require('chalk');
 
 // Requiring Actions
+const createNewServer = require('./actions/createNewServer');
 const createProxyServer = require('./actions/createProxyServer');
-const createStaticServer = require('./actions/createStaticServer');
 const killServer = require('./actions/killServer');
 const listServers = require('./actions/listServers');
 
 // Requiring utils
 const validate = require('./utils/validate');
 
-function server (domain, outPort = "80") {
+const pacversion = 'up-serve v. ' + require('./package.json').version;
+
+function version () {
+	return pacversion;
+}
+
+function server (domain, path, outPort = "80") {
 	// If outport is not given, 80 is set as default.
 	outPort = String(outPort);
 	validate(domain, outPort);
 	// Validates domain and outport, and if invalid, throws and returns.
-	createStaticServer(domain, outPort);
+	createNewServer(domain, path, outPort);
 	if (outPort != "80" || "443") domain = domain + ":" + outPort;
 	return (EOL + [
 		"Done! Your static server has been set up!",
@@ -56,6 +62,7 @@ function kill (domain, outPort = "80") {
 }
 
 module.exports = {
+	version,
 	server,
 	proxy,
 	list,

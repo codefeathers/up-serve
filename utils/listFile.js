@@ -15,9 +15,9 @@ function appendToList(domain, outPort, inPort) {
 	};
 
 	if (!inPort) {
-		domBlock.type = "static";
+		domBlock.type = "static/server";
 	} else {
-		domBlock.type = "proxy";
+		domBlock.type = "proxy server";
 		domBlock.inPort = inPort;
 	}
 
