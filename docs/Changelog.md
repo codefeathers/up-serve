@@ -1,5 +1,12 @@
 # Changelog / Version history
 
+## `up` v. 0.2.5
+
+- `up static` is DEPRECATED. Use `up serve` instead.
+- Major refactor of code, and splitting of `index.js` to `lib.js` and `cli.js`.
+- Basic API now available.
+- Usage of `conf.d` is DEPRECATED. `up-serve` now only uses `sites-enabled`. Since everything is abstracted at a higher level, the need for maintaining two directories (Read sites-available here) is non-existent.
+
 ## `up` v. 0.2.1
 
 - Bug fix and patch for `up kill-all` breaking unexpectedly due to undefined default config file.

@@ -23,6 +23,7 @@
 		"no-var": "error",
 		"strict": "error",
 		"eol-last": "error",
-		"max-len": "error"
+		"max-len": "error",
+		"no-unused-expressions": "error"
 	}
 }
