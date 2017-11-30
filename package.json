@@ -2,7 +2,7 @@
 	"name": "up-serve",
 	"version": "0.2.1",
 	"description": "A cli tool to quickly create and manage nginx server blocks.",
-	"main": "index.js",
+	"main": "lib.js",
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1",
 		"build": "node ./build/fetchTLDS"
@@ -28,8 +28,8 @@
 	},
 	"homepage": "https://github.com/codefeathers/up-serve#readme",
 	"dependencies": {
-		"chalk": "^2.3.0",
-		"commander": "^2.11.0",
+		"chalk": "2.3.0",
+		"commander": "2.11.0",
 		"fs-extra": "^4.0.2",
 		"prettyjson": "^1.2.1",
 		"readline-sync": "^1.4.7",

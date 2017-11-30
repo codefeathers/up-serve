@@ -14,9 +14,11 @@ const { EOL } = require('os'); // \n if used on Linux, \r\n if used on Windows.
 
 function createStaticServer(domain, outPort) {
 	outPort = outPort || 80;
-	shell.mkdir('-p', npath.confD());
+
+	shell.mkdir('-p', npath.enabledSites());
+	// Creates directories if doesn't exist
 	
-	fs.outputFileSync((conf(npath.confD(), domain, outPort)),
+	fs.outputFileSync((conf(npath.enabledSites(), domain, outPort)),
 	// Gets nginx's paths from nginxPath.js
 		"server {" + EOL +
 		"	listen " + outPort + ";" + EOL +
@@ -30,13 +32,7 @@ function createStaticServer(domain, outPort) {
 		"	}" + EOL +
 		"}"
 	);
-	shell.mkdir('-p', npath.enabledSites());
-	// Creates directories if doesn't exist
-	shell.rm('-rf', conf(npath.enabledSites(), domain, outPort));
-	// Removes domain from sites-enabled if exists
-	shell.ln('-sf', conf(npath.confD(), domain, outPort),
-		conf(npath.enabledSites(), domain, outPort));
-	// Symlink the conf file from confD to sites-enabled
+
 	shell.rm('-rf', npath.webRootDomain(domain, outPort));
 	// Removes domain from webroot if exists
 	shell.mkdir('-p', npath.webRoot());

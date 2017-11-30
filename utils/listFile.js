@@ -1,7 +1,5 @@
 'use strict';
 
-const { EOL } = require('os');
-
 const fs = require('fs-extra');
 
 const removeFromArray = require('./removeFromArray');
@@ -35,23 +33,33 @@ function appendToList(domain, outPort, inPort) {
 function removeFromList (domain, outPort) {
 	if (fs.existsSync(listFilePath())) {
 		let jsonFile = { "domains": [] };
-		const jsonBuffer = JSON.parse(fs.readFileSync(listFilePath()));
-		jsonFile.domains = removeFromArray(jsonBuffer.domains, domain, outPort);
-
-		jsonFile = JSON.stringify(jsonBuffer, null, '\t');
-		fs.writeFileSync(listFilePath(), jsonFile);
+		const jsonContent = fs.readFileSync(listFilePath(), "utf-8");
+		const jsonBuffer = JSON.parse(jsonContent);
+		for (let i = 0; i < (jsonBuffer.domains).length; i ++) {
+			if(jsonBuffer.domains[i].domain == domain){
+				jsonFile.domains =
+					removeFromArray(jsonBuffer.domains, domain, outPort);
+		
+				jsonFile = JSON.stringify(jsonFile, null, '\t');
+				fs.writeFileSync(listFilePath(), jsonFile);
+				return;
+			}
+		}
+		throw new Error("This domain does not exist in servers.up");
 	}
-	else console.log(EOL + "No servers were created using `up` yet." + EOL);
+	else throw new Error("No servers were created using `up` yet.");
 }
 
 function readServers () {
 	let serversList;
 	if (fs.existsSync(listFilePath())) {
 		serversList = JSON.parse(fs.readFileSync(listFilePath()));
-		if(!serversList.domains[0]) return undefined;
+		if(!serversList.domains[0]) {
+			throw new Error("No domains exist in servers.up");
+		}
 	}
 	else {
-		return "Servers were not created";
+		return "No servers were created using `up` yet.";
 	}
 	return serversList;
 }

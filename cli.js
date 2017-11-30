@@ -9,49 +9,76 @@ const program = require('commander');
 const chalk = require('chalk');
 
 // Require API
-const up = require('./api');
+const up = require('./lib');
+const killAllConfirm = require('./actions/killAllConfirm');
 
 // Requiring utils
 const requirements = require('./utils/requirements');
 
 // Check for requirements such as OS version and nginx install.
-// Throw and exit if requirements not found.
 // #Roadmap: Add ability to satisfy any possible requirements.
 
-requirements(); // Comment in development and uncomment this line in production.
-// This should check whether the OS is compatible with this version of `up`
-	
-let cmdValue;
+requirements();
+// Comment in development and uncomment this line in production.
+
+const tryCatch = ((test, name) => {
+	try {
+		const msg = test();
+		if(msg) console.log(msg);
+	} catch (err) {
+		err.message = EOL + `[${name}]: ` + err.message;
+		console.log (err.message);
+		process.exit(1);
+	}
+});
+
+let cmdValue = '';
 
 program
-	.version('0.2.1')
+	.version('0.2.5')
 	.arguments('<cmd>')
 	.action((cmd) => cmdValue = cmd);
 
 program
 	.command('static <domain> [outPort]')
 	.description('Create a static server at this folder.')
-	.action((domain, outPort) => up.server(domain, outPort));
+	.action((domain, outPort) =>
+		tryCatch(
+			() => up.server(domain, outPort),
+			'new-server'
+		));
 
 program
 	.command('proxy <domain> <inPort> [outPort]')
 	.description('Create a proxy server, listening at port number.')
-	.action((domain, inPort, outPort) => up.proxy(domain, inPort, outPort));
+	.action((domain, inPort, outPort) =>
+		tryCatch(
+			() => up.proxy(domain, inPort, outPort),
+			'new-proxy'
+		));
 
 program
 	.command('list')
 	.description('List all available servers.')
-	.action(() => up.list());
+	.action(() =>
+		tryCatch(
+			() => up.list(),
+			'list'
+		));
 
 program
 	.command('kill <domain> [ourPort]')
 	.description('Kill a server.')
-	.action((domain, outPort) => up.kill(domain, outPort));
+	.action((domain, outPort) =>
+		tryCatch (
+			() => up.kill(domain, outPort),
+			'kill-server'
+		));
 
 program
 	.command('kill-all')
 	.description('Warning! Will completely kill all servers and reset nginx')
-	.action(() => up.reset());
+	.action(() => killAllConfirm());
 
 
 program
