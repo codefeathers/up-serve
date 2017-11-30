@@ -25,7 +25,8 @@ function requirements() {
 
 	// Check if sudo
 	if (process.getuid() != 0) {
-		console.log("`up` requires root privileges to work. Please use `sudo up <command>`");
+		shell.echo("`up` requires root privileges to work."
+			+ "Please use `sudo up <command>`");
 		shell.exit(1);
 	}
 	

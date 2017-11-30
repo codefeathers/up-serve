@@ -1,7 +1,5 @@
 'use strict';
 
-const { EOL } = require('os');
-
 const parseToInt = require('./parseToInt');
 const isIP = require('./isIP');
 
@@ -15,12 +13,12 @@ function validate(domain, inPort, outPort) {
 
 	// Error messages
 	const domainInvalidMsg = [
-		EOL + "Please use a domain name instead of an IP address.",
-		EOL + "Domain is not valid. Please use a valid domain name."
+		"Please use a domain name instead of an IP address.",
+		"Domain is not valid. Please use a valid domain name."
 	];
 	const portInvalidMsg = [
-		EOL + "Port should be a number.",
-		EOL + "Port should be a number from 1 and 65535."
+		"Port should be a number.",
+		"Port should be a number from 1 and 65535."
 	];
 	
 	// ARGV returns a string as input.
@@ -30,35 +28,25 @@ function validate(domain, inPort, outPort) {
 	const validInPort = parseToInt(inPort);
 	const validOutPort = parseToInt(outPort);
 
-	// The value of isInvalid will be returned back.
-	// If none of the `if`s are true, the default
-	// value `true` is returned `domain`, `inPort` and `outPort` are considered
-	// validated.
-	let isValid = true;
-
 	// Throw if IP is given instead of domain name.
 	if (isIP(domain)) {
-		console.log(domainInvalidMsg[0]);
-		return isValid = false;
+		throw new Error(domainInvalidMsg[0]);
 	}
 
 	// Throw if input is not a Fully Qualified Domain Name (FQDN)
 	if (!isDomain(domain)) {
-		console.log(domainInvalidMsg[1]);
-		return isValid = false;
+		throw new Error(domainInvalidMsg[1]);
 	}
 
 	// Enter if `inPort` is not defined.
 	// This happens for `up static` where no inbound ports are required.
 	if (typeof inPort == undefined) {
 		if (!validOutPort) {
-			console.log(portInvalidMsg[0]); // `outPort` is not an integer.
-			return isValid = false;
+			throw new Error(portInvalidMsg[0]);// `outPort` is not an integer.
 		}
 		if (!(validOutPort > 0 && validOutPort <= 65535)) {
-			console.log(portInvalidMsg[1]);
+			throw new Error(portInvalidMsg[1]);
 			// `outPort` is not within port range.
-			return isValid = false;
 		}
 	}
 
@@ -66,23 +54,18 @@ function validate(domain, inPort, outPort) {
 	// inbound port is required.
 	if (typeof inPort !== undefined) {
 		if (!validInPort || !validOutPort) {
-			console.log(portInvalidMsg[0]);
+			throw new Error(portInvalidMsg[0]);
 			// Either `inPort` or `outPort` is not an integer.
-			return isValid = false;
 		}
 		if (typeof outPort !== undefined) {
 			if (!(
 				(validInPort > 0 && validInPort <= 65535) &&
 				(validOutPort > 0 && validOutPort <= 65535)
 			)) {
-				console.log(portInvalidMsg[1]);
+				throw new Error(portInvalidMsg[1]);
 				// Either `inPort` or `outPort` are not within port range.
-				return isValid = false;
 			}
 		}
-		return isValid;
-		// If any of the `if`s were true, `isInvalid = false`.
-		// If not, `isInvalid = true`.
 	}
 }
 

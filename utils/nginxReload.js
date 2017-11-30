@@ -3,14 +3,17 @@
 const { execSync } = require('child_process');
 
 function nginxReload() {
-	execSync('service nginx reload', function (error, stdout, stderr) {
-		if (error) {
-			console.error("exec error: " + error);
-			console.log("stdout: " + stdout);
-			console.log("stderr: " + stderr);
-			process.exit(1);
-		}
-	});
+	try {
+		execSync('service nginx reload', {
+			stdio: 'ignore'
+		});
+		execSync('service nginx start', {
+			stdio: 'ignore'
+		});
+	} catch (err) {
+		throw new Error('nginx failed to load');
+	}
+	return;
 }
 
 module.exports = nginxReload;
