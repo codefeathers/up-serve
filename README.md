@@ -8,6 +8,8 @@
 
 # up
 
+![A quick demo](assets/demo.gif)
+
 > Current version: `up v.0.2.5 (Alpha)`
 
 > Notes: `up` is now in Alpha! 🎉 [(Changelog)](/docs/Changelog.md)\
