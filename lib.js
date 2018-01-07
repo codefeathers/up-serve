@@ -20,7 +20,8 @@ function version () {
 	return pacversion;
 }
 
-function server (domain, path, outPort = "80") {
+function server (options) {
+	let { domain, path, outPort = "80" } = options;
 	// If outport is not given, 80 is set as default.
 	outPort = String(outPort);
 	validate(domain, outPort);
@@ -35,7 +36,8 @@ function server (domain, path, outPort = "80") {
 	].join(EOL));
 }
 
-function proxy (domain, inPort, outPort = "80") {
+function proxy (options) {
+	let { domain, inPort, outPort = "80" } = options;
 	// Inbound port is necessary, but outbound is set to 80 by default.
 	outPort = String(outPort);
 	inPort = String(inPort);
@@ -54,7 +56,8 @@ function list () {
 	return listServers();
 }
 
-function kill (domain, outPort = "80") {
+function kill (options) {
+	let { domain, outPort = "80" } = options;
 	outPort = String(outPort);
 	// This is a string because regex needs to validate it.
 	killServer(domain, outPort);

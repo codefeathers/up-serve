@@ -22,7 +22,7 @@ let cmdValue = '';
 // Check for requirements such as OS version and nginx install.
 // #Roadmap: Add ability to satisfy any possible requirements.
 
-requirements();
+//requirements();
 // Comment in development and uncomment this line in production.
 
 program
@@ -46,16 +46,25 @@ program
 	.description('Create a server at this folder.')
 	.action((domain, outPort) =>
 		tryCatch(
-			() => up.server(domain, currentPath, outPort),
+			() => up.server({
+				domain: domain,
+				path: currentPath,
+				outPort: outPort
+			}),
 			'new-server'
 		));
-		
+
 program
 	.command('static <domain> [outPort]')
-	.description('DEPRECATED! Create a static server at this folder.')
+	.description(`DEPRECATED! Use 'up serve' instead!
+		Create a static server at this folder.`)
 	.action((domain, outPort) =>
 		tryCatch(
-			() => up.server(domain, currentPath, outPort),
+			() => up.server({
+				domain: domain,
+				path: currentPath,
+				outPort: outPort
+			}),
 			'new-server'
 		));
 
@@ -64,7 +73,11 @@ program
 	.description('Create a proxy server, listening at port number.')
 	.action((domain, inPort, outPort) =>
 		tryCatch(
-			() => up.proxy(domain, inPort, outPort),
+			() => up.proxy({
+				domain: domain,
+				inPort: inPort,
+				outPort: outPort
+			}),
 			'new-proxy'
 		));
 
@@ -82,7 +95,10 @@ program
 	.description('Kill a server.')
 	.action((domain, outPort) =>
 		tryCatch (
-			() => up.kill(domain, outPort),
+			() => up.kill({
+				domain: domain,
+				outPort: outPort
+			}),
 			'kill-server'
 		));
 

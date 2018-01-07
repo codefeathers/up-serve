@@ -9,23 +9,23 @@ function appendToList(domain, outPort, inPort) {
 	
 	inPort = inPort || undefined;
 	let jsonFile = { "domains": [] };
-	const domBlock = {
+	const domainBlock = {
 		"domain": domain,
 		"outPort": outPort
 	};
 
 	if (!inPort) {
-		domBlock.type = "static/server";
+		domainBlock.type = "static/server";
 	} else {
-		domBlock.type = "proxy server";
-		domBlock.inPort = inPort;
+		domainBlock.type = "proxy server";
+		domainBlock.inPort = inPort;
 	}
 
 	if (fs.existsSync(listFilePath())) {
 		const jsonBuffer = JSON.parse(fs.readFileSync(listFilePath()));
 		jsonFile.domains = removeFromArray(jsonBuffer.domains, domain, outPort);
 	}
-	jsonFile.domains.push(domBlock);
+	jsonFile.domains.push(domainBlock);
 	jsonFile = JSON.stringify(jsonFile, null, '\t');
 	fs.writeFileSync(listFilePath(), jsonFile);
 }
@@ -59,7 +59,7 @@ function readServers () {
 		}
 	}
 	else {
-		return "No servers were created using `up` yet.";
+		throw new Error("No servers were created using `up` yet.");
 	}
 	return serversList;
 }

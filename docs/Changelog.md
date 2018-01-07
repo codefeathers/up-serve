@@ -1,5 +1,9 @@
 # Changelog / Version history
 
+## `up` v. 0.3.0
+
+- BREAKING API changes. Functions will now accept an object instead of a list of arguments. This allows for named parameters that don't have to follow a precise order. Check [README](../README.md) for details.
+
 ## `up` v. 0.2.5
 
 - `up static` is DEPRECATED. Use `up serve` instead.
@@ -13,6 +17,7 @@
 
 ## `up` v. 0.2.0
 
+- Added CHANGELOG from here.
 - Under the hood BREAKING changes. Working directories change.
    - `/var/www/` to `/etc/up-serve/static/`
    - `/etc/nginx/sites-available/` to `/etc/nginx/conf.d`

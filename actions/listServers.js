@@ -8,8 +8,7 @@ const { EOL } = require('os');
 function listServers() {
 	const serversList = readServers();
 	if(serversList) return(EOL + prettyjson.render(serversList));
-	else return(EOL +
-		"No servers were found! Create some using `up`!");
+	else throw new Error("No servers were found! Create some using `up`!");
 }
 
 module.exports = listServers;
