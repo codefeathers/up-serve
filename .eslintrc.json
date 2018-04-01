@@ -18,7 +18,9 @@
 			"error",
 			"always"
 		],
-		"prefer-const": "error",
+		"prefer-const": ["error", {
+			"destructuring": "all"
+		}],
 		"prefer-destructuring": "error",
 		"no-var": "error",
 		"strict": "error",

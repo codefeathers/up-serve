@@ -10,7 +10,7 @@
 
 ![A quick demo](assets/demo.gif)
 
-> Current version: `up v.0.2.5 (Alpha)`
+> Current version: `up v.0.3.0 (Alpha)`
 
 > Notes: `up` is now in Alpha! 🎉 [(Changelog)](/docs/Changelog.md)\
 > ⚠️ `up` is pretty useable so far. If you're testing `up` on a development server, do give us feedback.
@@ -42,7 +42,7 @@ Format: `up command <required> [optional]`
 
 ## Examples
 
-- `up static example.com` will serve a static website from current folder.
+- `up serve example.com` will serve a static website from current folder.
 - `up proxy example.com 8081` will create a reverse proxy listening at port 8081.
 - `up kill example.com` will kill the server named example.com.
 - `up list` will fetch a list of servers created with `up`.
@@ -52,12 +52,12 @@ Format: `up command <required> [optional]`
 ```JavaScript
 const up = require('up-serve')
 
-console.log(up.version()) // up v. 0.2.5
+console.log(up.version()) // up v. 0.3.0
 
-let result = up.server("example.com", "path/to/project", "80")
+let result = up.server({ domain: "example.com", path: "path/to/project", outPort: "80" })
 console.log(result) // Will log success or throw if error
 
-let result = up.kill("example.com", "80")
+let result = up.kill({ domain: "example.com", outPort: "80" })
 console.log(result) // Will log success or throw if error
 ```
 

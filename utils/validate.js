@@ -3,14 +3,11 @@
 const parseToInt = require('./parseToInt');
 const isIP = require('./isIP');
 
-// Using Validator
+// Validate fully qualified domain names
 const isDomain = require('./isFQDN');
 
-function validate(domain, inPort, outPort) {
-	//
-	inPort = inPort || undefined;
-	outPort = outPort || 80;
-
+function validate(domain, inPort = undefined, outPort = 80) {
+	
 	// Error messages
 	const domainInvalidMsg = [
 		"Please use a domain name instead of an IP address.",
