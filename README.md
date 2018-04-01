@@ -10,7 +10,7 @@
 
 ![A quick demo](assets/demo.gif)
 
-> Current version: `up v.0.3.0 (Alpha)`
+> Current version: `up v.0.3.1 (Alpha)`
 
 > Notes: `up` is now in Alpha! 🎉 [(Changelog)](/docs/Changelog.md)\
 > ⚠️ `up` is pretty useable so far. If you're testing `up` on a development server, do give us feedback.

@@ -1,5 +1,9 @@
 # Changelog / Version history
 
+## `up` v. 0.3.1
+
+- Minor patch: Fixed sudo not being required for commands.
+
 ## `up` v. 0.3.0
 
 - BREAKING API changes. Functions will now accept an object instead of a list of arguments. This allows for named parameters that don't have to follow a precise order. Check [README](../README.md) for details.
