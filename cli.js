@@ -20,9 +20,10 @@ const currentPath = path.normalize(process.cwd());
 let cmdValue = '';
 
 // Check for requirements such as OS version and nginx install.
-// #Roadmap: Add ability to satisfy any possible requirements.
+//TODO: Add ability to satisfy any possible requirements.
+//TODO: Ask for requirements only when needed (exclude for `up list`)
 
-//requirements();
+requirements();
 // Comment in development and uncomment this line in production.
 
 program
