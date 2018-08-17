@@ -8,7 +8,8 @@
 
 # up
 
-![A quick demo](assets/demo.gif)
+![A quick demo](assets/demo.gif)[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fcodefeathers%2Fup-serve.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fcodefeathers%2Fup-serve?ref=badge_shield)
+
 
 > Current version: `up v.0.3.1 (Alpha)`
 
@@ -72,3 +73,7 @@ More detailed API documentation coming soon.
 <h4 align="center"><a href="Contributing.MD">Contribution Guidelines</a></h4>
 
 <h4 align="center"><a href="/docs/Contributors.md">Contributors, Collaborators, and Guides</a></h4>
+
+
+## License
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fcodefeathers%2Fup-serve.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fcodefeathers%2Fup-serve?ref=badge_large)
