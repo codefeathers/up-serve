@@ -1,6 +1,6 @@
 {
 	"name": "up-serve",
-	"version": "0.3.2",
+	"version": "0.3.3",
 	"description": "A cli tool to quickly create and manage nginx server blocks.",
 	"main": "lib.js",
 	"scripts": {
