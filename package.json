@@ -1,6 +1,6 @@
 {
 	"name": "up-serve",
-	"version": "0.3.3",
+	"version": "0.3.4",
 	"description": "A cli tool to quickly create and manage nginx server blocks.",
 	"main": "lib.js",
 	"scripts": {
@@ -32,7 +32,7 @@
 	"homepage": "https://github.com/codefeathers/up-serve#readme",
 	"dependencies": {
 		"chalk": "2.3.0",
-		"commander": "2.11.0",
+		"commander": "^2.17.1",
 		"fs-extra": "^4.0.2",
 		"prettyjson": "^1.2.1",
 		"readline-sync": "^1.4.7",
@@ -40,6 +40,6 @@
 		"shelljs": "^0.7.8"
 	},
 	"devDependencies": {
-		"eslint": "^4.19.1"
+		"eslint": "^5.5.0"
 	}
 }
