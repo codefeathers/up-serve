@@ -45,9 +45,9 @@ function removeFromList (domain, outPort) {
 				return;
 			}
 		}
-		throw new Error("This domain does not exist in servers.up");
+		throw new Error(`This domain does not exist in servers.up`);
 	}
-	else throw new Error("No servers were created using `up` yet.");
+	else throw new Error(`No servers were created using \`up\` yet.`);
 }
 
 function readServers () {
@@ -55,11 +55,11 @@ function readServers () {
 	if (fs.existsSync(listFilePath())) {
 		serversList = JSON.parse(fs.readFileSync(listFilePath()));
 		if(!serversList.domains[0]) {
-			throw new Error("No domains exist in servers.up");
+			throw new Error(`No domains exist in servers.up`);
 		}
 	}
 	else {
-		throw new Error("No servers were created using `up` yet.");
+		throw new Error(`No servers were created using \`up\` yet.`);
 	}
 	return serversList;
 }
