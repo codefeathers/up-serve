@@ -21,15 +21,13 @@ function killALL () {
 		conf(npath.enabledSites()));
 	// Create the default.conf file
 	nginxReload();
-	console.log(EOL + "All servers were killed and reverted to default." +
-		EOL + "A backup of your old servers.up is " +
-			"saved in /etc/up-serve/servers.bak.up." +
-		"Check this if you need to." + EOL
-	);
+	console.log(`\nAll servers were killed and reverted to default.
+		A backup of your old servers.up is saved in /etc/up-serve/servers.bak.up.\
+		Check this if you need to.`);
 }
 
 function noKill () {
-	return(EOL + "kill-all was interrupted by user.");
+	return(`\nkill-all was interrupted by user.`);
 }
 
 module.exports.kill = killALL;

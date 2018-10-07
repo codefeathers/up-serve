@@ -17,21 +17,21 @@ function createProxyServer(domain, inPort, outPort) {
 	// Creates directories if doesn't exist
 
 	fs.outputFileSync((conf(npath.enabledSites(), domain, outPort)),
-		"server {" + EOL +
-		"	listen " + outPort + ";" + EOL +
-		"	listen [::]:" + outPort + ";" + EOL +
-		"	index index.html index.htm;" + EOL +
-		"" + EOL +
-		"	server_name " + domain + ";" + EOL +
-		"		location / {" + EOL +
-		"		proxy_pass http://localhost:" + inPort + ";" + EOL +
-		"		proxy_http_version 1.1;" + EOL +
-		"		proxy_set_header Upgrade $http_upgrade;" + EOL +
-		"		proxy_set_header Connection 'upgrade';" + EOL +
-		"		proxy_set_header Host $host;" + EOL +
-		"		proxy_cache_bypass $http_upgrade;" + EOL +
-		"	}" + EOL +
-		"}"
+		`server {
+			listen ${outPort};
+			listen [::]:${outPort};
+			index index.html index.htm;
+
+			server_name ${domain};
+				location / {
+				proxy_pass http://localhost:${inPort};
+				proxy_http_version 1.1;
+				proxy_set_header Upgrade $http_upgrade;
+				proxy_set_header Connection 'upgrade';
+				proxy_set_header Host $host;
+				proxy_cache_bypass $http_upgrade;
+			}
+		}`
 	);
 	
 	shell.mkdir('-p', npath.enabledSites());
